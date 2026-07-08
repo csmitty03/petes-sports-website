@@ -496,9 +496,9 @@ ul {
 
 .managers-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(280px, 320px));
     gap: 24px;
-    max-width: 720px;
+    justify-content: center;
     margin: 0 auto;
 }
 
