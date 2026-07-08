@@ -1,0 +1,11 @@
+# Backup files
+*.bak
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Accidental scratch assets
+assets/vgbu1zg5.pnh.png
