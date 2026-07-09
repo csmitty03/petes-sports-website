@@ -893,6 +893,19 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
+.teamwear-brand-logo {
+    flex-shrink: 0;
+    width: 160px;
+}
+
+.teamwear-brand-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
 .teamwear-brand-label {
     display: inline-block;
     font-size: 0.75rem;
@@ -901,14 +914,6 @@ ul {
     text-transform: uppercase;
     color: #1d4ed8;
     margin-bottom: 10px;
-}
-
-.teamwear-brand-card h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    letter-spacing: 0.02em;
-    margin-bottom: 10px;
-    color: var(--black);
 }
 
 .teamwear-brand-card p {
@@ -1399,8 +1404,17 @@ ul {
 
     .teamwear-brand-card {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         padding: 28px 24px;
+    }
+
+    .teamwear-brand-logo {
+        width: 140px;
+    }
+
+    .teamwear-brand-copy p {
+        max-width: none;
     }
 
     .teamwear-brand-btn {
