@@ -895,7 +895,7 @@ ul {
 
 .teamwear-brand-logo {
     flex-shrink: 0;
-    width: min(320px, 100%);
+    width: 160px;
 }
 
 .teamwear-brand-logo img {
@@ -1410,7 +1410,7 @@ ul {
     }
 
     .teamwear-brand-logo {
-        width: min(280px, 100%);
+        width: 140px;
     }
 
     .teamwear-brand-copy p {
