@@ -877,6 +877,60 @@ ul {
     font-size: 0.9rem;
 }
 
+.teamwear-brands {
+    margin-top: 72px;
+}
+
+.teamwear-brand-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 36px 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    background: linear-gradient(135deg, #f8fafc 0%, #eef4ff 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.teamwear-brand-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+    margin-bottom: 10px;
+}
+
+.teamwear-brand-card h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.teamwear-brand-card p {
+    color: var(--gray-600);
+    font-size: 0.98rem;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+.teamwear-brand-action {
+    flex-shrink: 0;
+}
+
+.teamwear-brand-btn {
+    white-space: nowrap;
+}
+
+.teamwear-brand-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 /* Teams marquee */
 .teams {
     background: var(--black);
@@ -1341,6 +1395,16 @@ ul {
         grid-template-columns: 1fr;
         max-width: 400px;
         margin: 0 auto;
+    }
+
+    .teamwear-brand-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 24px;
+    }
+
+    .teamwear-brand-btn {
+        width: 100%;
     }
 
     .services-grid {
