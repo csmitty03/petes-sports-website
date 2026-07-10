@@ -2,6 +2,14 @@
 
 Nuxt 4 version of the Pete's Sports website — London & Strathroy, Ontario.
 
+## Styling
+
+This project uses **Tailwind CSS** alongside the existing custom CSS in `app/assets/css/main.css`.
+
+- Use Tailwind utility classes in Vue components for new work
+- Brand colors are configured in `tailwind.config.ts` (`accent`, `charcoal`, `font-display`, etc.)
+- Existing sections still use `main.css` — migrate to Tailwind gradually
+
 ## Development
 
 ```bash
