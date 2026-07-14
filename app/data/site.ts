@@ -1,4 +1,4 @@
-export type InquiryType = 'sales' | 'store' | 'gemini' | 'manager'
+export type InquiryType = 'sales' | 'store' | 'manager'
 
 export interface Person {
   initials: string
@@ -47,16 +47,9 @@ export const managers: Person[] = [
   {
     initials: 'CS',
     name: 'Carsen Smith',
-    role: 'Main Store Manager',
-    location: "Pete's Sports — London",
+    role: 'Store Manager',
+    location: "Pete's Main Store & Gemini — London & Strathroy",
     email: 'csmith@petessports.com',
-  },
-  {
-    initials: 'AC',
-    name: 'Alana Campbell',
-    role: 'Gemini Store Manager',
-    location: "Pete's Sports — Strathroy",
-    email: 'geminiproshop@gmail.com',
   },
 ]
 
@@ -153,14 +146,8 @@ export const inquiries: Record<InquiryType, { email: string; name: string; subje
   store: {
     label: 'Store Inquiry',
     email: 'csmith@petessports.com',
-    name: 'Carsen Smith — Main Store Manager',
+    name: 'Carsen Smith — Store Manager',
     subject: 'Store Inquiry',
-  },
-  gemini: {
-    label: 'Gemini Inquiry',
-    email: 'geminiproshop@gmail.com',
-    name: 'Alana Campbell — Gemini Store Manager',
-    subject: 'Gemini Inquiry',
   },
   manager: {
     label: 'General Manager',
