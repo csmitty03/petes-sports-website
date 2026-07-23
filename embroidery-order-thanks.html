@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Received | Pete's Sports</title>
+    <link rel="icon" href="assets/petes-sports-logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .thanks-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 24px 60px;
+            background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 50%);
+            text-align: center;
+        }
+        .thanks-card {
+            max-width: 560px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 28px;
+        }
+        .thanks-card img {
+            width: 120px;
+            margin: 0 auto 18px;
+        }
+        .thanks-card h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+        .thanks-card p {
+            color: var(--gray-600);
+            margin-bottom: 12px;
+        }
+        .thanks-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <main class="thanks-page">
+        <div class="thanks-card">
+            <img src="assets/petes-sports-logo.png" alt="Pete's Sports">
+            <h1>Thank You!</h1>
+            <p>Pete's Sports has received your embroidery / cresting order request.</p>
+            <p>We'll review the details and contact you shortly with a quote or any follow-up questions.</p>
+            <p><strong>Questions?</strong> Call <a href="tel:+15194339555">(519) 433-9555</a> or email <a href="mailto:sales@petessports.com">sales@petessports.com</a></p>
+            <div class="thanks-actions">
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+                <a href="embroidery-order.html" class="btn btn-outline">Submit another order</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
