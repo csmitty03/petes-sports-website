@@ -2,7 +2,7 @@
 import { formatCad } from '~/composables/useCatalog'
 
 const route = useRoute()
-const { products } = await useCatalog()
+const { products, pending, error, refresh, productCount } = await useCatalog()
 
 const product = computed(() => {
   const id = String(route.query.id || '')
@@ -26,6 +26,8 @@ const mailHref = computed(() => {
   )
   return `mailto:sales@petessports.com?subject=${subject}&body=${body}`
 })
+
+const isLoading = computed(() => pending.value && !product.value)
 </script>
 
 <template>
@@ -41,7 +43,20 @@ const mailHref = computed(() => {
           <span>{{ product?.name || 'Product' }}</span>
         </nav>
 
-        <div v-if="product" class="product-detail">
+        <div v-if="isLoading" class="shop-empty">
+          <h2>Loading product…</h2>
+          <p>Loading catalog details. This can take a few seconds.</p>
+        </div>
+
+        <div v-else-if="error && !productCount" class="shop-empty">
+          <h2>Couldn’t load product</h2>
+          <div class="shop-empty-actions">
+            <button type="button" class="btn btn-primary" @click="refresh()">Retry</button>
+            <NuxtLink to="/shop" class="btn btn-outline">Back to shop</NuxtLink>
+          </div>
+        </div>
+
+        <div v-else-if="product" class="product-detail">
           <div class="product-detail-media">
             <img
               v-if="product.image || product.imageThumb"

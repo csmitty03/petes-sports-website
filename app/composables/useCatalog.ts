@@ -47,13 +47,23 @@ function catalogUrl() {
   const config = useRuntimeConfig()
   const base = config.app.baseURL || '/'
   const normalized = base.endsWith('/') ? base : `${base}/`
+  // Absolute path from site root (works on GitHub Pages with baseURL)
   return `${normalized}data/catalog.json`
 }
 
+/**
+ * Load catalog on the client only.
+ * A 22k-product JSON is too large to embed in SSR HTML; the previous
+ * server fetch failed during generate and left the shop stuck empty.
+ */
 export async function useCatalog() {
-  const { data, error } = await useFetch<Catalog>(catalogUrl(), {
-    key: 'petes-catalog',
+  const { data, error, pending, refresh, status } = await useFetch<Catalog>(catalogUrl(), {
+    key: 'petes-catalog-v2',
     default: () => emptyCatalog,
+    server: false,
+    lazy: true,
+    // Large file — avoid short browser/proxy timeouts where possible
+    timeout: 120000,
   })
 
   if (error.value) {
@@ -67,11 +77,9 @@ export async function useCatalog() {
     brands: computed(() => data.value?.brands || []),
     syncedAt: computed(() => data.value?.syncedAt || null),
     productCount: computed(() => data.value?.productCount || 0),
+    pending,
+    error,
+    status,
+    refresh,
   }
-}
-
-export async function useProduct(id: string) {
-  const { products, catalog } = await useCatalog()
-  const product = computed(() => products.value.find((p) => p.id === id) || null)
-  return { product, catalog }
 }
