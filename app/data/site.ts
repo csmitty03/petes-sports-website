@@ -14,6 +14,7 @@ export interface Service {
   description: string
   tag?: string
   link?: string
+  linkLabel?: string
 }
 
 export interface Location {
@@ -69,6 +70,8 @@ export const services: Service[] = [
   {
     title: 'Custom Embroidery & Cresting',
     description: 'Professional in-house embroidery and cresting for teams, businesses, and individuals. High quality that lasts.',
+    link: 'embroidery-order.html',
+    linkLabel: 'Start an order form',
   },
   {
     title: 'Teamwear & Jerseys',

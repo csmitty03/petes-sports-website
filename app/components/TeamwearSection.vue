@@ -18,7 +18,7 @@ const { handleAnchorClick } = useSmoothScroll()
               {{ item }}
             </li>
           </ul>
-          <a href="#contact" class="btn btn-accent" @click="handleAnchorClick($event, '#contact')">Get a Team Quote</a>
+          <a href="embroidery-order.html" class="btn btn-accent">Get a Team Quote / Order Form</a>
         </div>
         <div class="teamwear-visual">
           <img src="/assets/petes-sports-logo.png" alt="Pete's Sports">
