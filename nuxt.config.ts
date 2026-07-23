@@ -1,23 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
-
-function productPrerenderRoutes(): string[] {
-  try {
-    const catalogPath = join(process.cwd(), 'public', 'data', 'catalog.json')
-    if (!existsSync(catalogPath)) return []
-    const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as {
-      products?: { id?: string }[]
-    }
-    return (catalog.products || [])
-      .map((p) => p.id)
-      .filter((id): id is string => Boolean(id))
-      .map((id) => `/shop/${id}`)
-  } catch {
-    return []
-  }
-}
-
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -37,8 +18,10 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
+      // Product detail uses query ?id= on /shop/product (one static page)
+      // so we do not prerender tens of thousands of product URLs.
       crawlLinks: true,
-      routes: ['/shop', ...productPrerenderRoutes()],
+      routes: ['/shop', '/shop/product'],
     },
   },
 })

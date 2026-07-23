@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="`/shop/${product.id}`" class="product-card">
+  <NuxtLink :to="{ path: '/shop/product', query: { id: product.id } }" class="product-card">
     <div class="product-card-image">
       <img
         v-if="product.imageThumb || product.image"

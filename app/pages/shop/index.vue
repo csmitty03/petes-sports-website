@@ -9,6 +9,8 @@ const { products, categories, brands, syncedAt, productCount } = await useCatalo
 const search = ref('')
 const category = ref('')
 const brand = ref('')
+const page = ref(1)
+const pageSize = 48
 
 const filtered = computed(() => {
   const q = search.value.trim().toLowerCase()
@@ -24,6 +26,17 @@ const filtered = computed(() => {
   })
 })
 
+const totalPages = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize)))
+
+const pageItems = computed(() => {
+  const start = (page.value - 1) * pageSize
+  return filtered.value.slice(start, start + pageSize)
+})
+
+watch([search, category, brand], () => {
+  page.value = 1
+})
+
 const syncedLabel = computed(() => {
   if (!syncedAt.value) return null
   try {
@@ -35,6 +48,16 @@ const syncedLabel = computed(() => {
     return syncedAt.value
   }
 })
+
+function prevPage() {
+  if (page.value > 1) page.value -= 1
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function nextPage() {
+  if (page.value < totalPages.value) page.value += 1
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -53,7 +76,7 @@ const syncedLabel = computed(() => {
           </p>
           <p v-if="syncedLabel" class="shop-synced">
             Catalog updated {{ syncedLabel }}
-            <span v-if="productCount"> · {{ productCount }} items</span>
+            <span v-if="productCount"> · {{ productCount.toLocaleString() }} items</span>
           </p>
         </header>
 
@@ -84,26 +107,44 @@ const syncedLabel = computed(() => {
         </div>
 
         <p class="shop-count">
-          Showing {{ filtered.length }}
+          Showing
+          <template v-if="filtered.length">
+            {{ ((page - 1) * pageSize) + 1 }}–{{ Math.min(page * pageSize, filtered.length) }}
+            of {{ filtered.length.toLocaleString() }}
+          </template>
+          <template v-else>0</template>
           {{ filtered.length === 1 ? 'product' : 'products' }}
         </p>
 
-        <div v-if="filtered.length" class="product-grid">
-          <ProductCard v-for="p in filtered" :key="p.id" :product="p" />
+        <div v-if="pageItems.length" class="product-grid">
+          <ProductCard v-for="p in pageItems" :key="p.id" :product="p" />
         </div>
 
-        <div v-else class="shop-empty">
-          <h2 v-if="!productCount">Inventory coming soon</h2>
-          <h2 v-else>No products match your filters</h2>
-          <p v-if="!productCount">
+        <div v-if="pageItems.length && totalPages > 1" class="shop-pagination">
+          <button type="button" class="btn btn-outline" :disabled="page <= 1" @click="prevPage">
+            Previous
+          </button>
+          <span>Page {{ page }} of {{ totalPages }}</span>
+          <button type="button" class="btn btn-outline" :disabled="page >= totalPages" @click="nextPage">
+            Next
+          </button>
+        </div>
+
+        <div v-else-if="!productCount" class="shop-empty">
+          <h2>Inventory coming soon</h2>
+          <p>
             We're connecting our Lightspeed inventory to the website.
             Call us anytime for gear and availability.
           </p>
-          <p v-else>Try a different search or clear your filters.</p>
           <div class="shop-empty-actions">
             <a href="tel:+15194339555" class="btn btn-primary">(519) 433-9555</a>
             <NuxtLink to="/#contact" class="btn btn-outline">Contact the team</NuxtLink>
           </div>
+        </div>
+
+        <div v-else-if="!filtered.length" class="shop-empty">
+          <h2>No products match your filters</h2>
+          <p>Try a different search or clear your filters.</p>
         </div>
 
         <p class="shop-disclaimer">

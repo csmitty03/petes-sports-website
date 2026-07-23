@@ -5,13 +5,10 @@ const route = useRoute()
 const { products } = await useCatalog()
 
 const product = computed(() => {
-  const id = String(route.params.id || '')
+  const id = String(route.query.id || '')
+  if (!id) return null
   return products.value.find((p) => p.id === id) || null
 })
-
-if (import.meta.server && !product.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Product not found' })
-}
 
 useSeoMeta({
   title: () => `${product.value?.name || 'Product'} | Pete's Sports`,
@@ -36,15 +33,15 @@ const mailHref = computed(() => {
     <SiteAnnouncement />
     <SiteNav />
 
-    <main v-if="product" class="shop-page product-detail-page">
+    <main class="shop-page product-detail-page">
       <div class="container">
         <nav class="product-breadcrumb">
           <NuxtLink to="/shop">Shop</NuxtLink>
           <span aria-hidden="true">/</span>
-          <span>{{ product.name }}</span>
+          <span>{{ product?.name || 'Product' }}</span>
         </nav>
 
-        <div class="product-detail">
+        <div v-if="product" class="product-detail">
           <div class="product-detail-media">
             <img
               v-if="product.image || product.imageThumb"
@@ -88,6 +85,14 @@ const mailHref = computed(() => {
             <p class="product-detail-note">
               Browse-only catalog — order by phone or email. We'll confirm stock at London or Strathroy.
             </p>
+          </div>
+        </div>
+
+        <div v-else class="shop-empty">
+          <h2>Product not found</h2>
+          <p>That item may have been removed or the link is incomplete.</p>
+          <div class="shop-empty-actions">
+            <NuxtLink to="/shop" class="btn btn-primary">Back to shop</NuxtLink>
           </div>
         </div>
 
