@@ -21,7 +21,9 @@ function closeMenu() {
 }
 
 function onNavClick(event: MouseEvent, href: string) {
-  handleAnchorClick(event, href)
+  if (href.startsWith('#')) {
+    handleAnchorClick(event, href)
+  }
   closeMenu()
 }
 
@@ -38,22 +40,22 @@ onUnmounted(() => {
 <template>
   <nav class="nav" :class="{ scrolled: isScrolled }">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo" @click="handleAnchorClick($event, '#')">
+      <NuxtLink to="/" class="nav-logo">
         <img src="/assets/petes-sports-logo.png" alt="Pete's Sports — Est. 1978">
-      </a>
+      </NuxtLink>
       <div class="nav-links">
-        <a
+        <NuxtLink
           v-for="link in navLinks"
           :key="link.href"
-          :href="link.href"
-          @click="handleAnchorClick($event, link.href)"
+          :to="link.href"
+          @click="onNavClick($event, link.href)"
         >
           {{ link.label }}
-        </a>
+        </NuxtLink>
       </div>
-      <a href="#contact" class="nav-cta nav-cta-desktop" @click="handleAnchorClick($event, '#contact')">
-        Contact Us
-      </a>
+      <NuxtLink to="/shop" class="nav-cta nav-cta-desktop">
+        Shop
+      </NuxtLink>
       <button class="nav-toggle" aria-label="Toggle menu" @click="toggleMenu">
         <span v-html="isMenuOpen ? closeIcon : menuIcon" />
       </button>
@@ -61,14 +63,14 @@ onUnmounted(() => {
   </nav>
 
   <div class="mobile-menu" :class="{ open: isMenuOpen }">
-    <a
+    <NuxtLink
       v-for="link in navLinks"
       :key="`mobile-${link.href}`"
-      :href="link.href"
+      :to="link.href"
       @click="onNavClick($event, link.href)"
     >
       {{ link.label }}
-    </a>
-    <a href="#contact" class="nav-cta" @click="onNavClick($event, '#contact')">Contact Us</a>
+    </NuxtLink>
+    <NuxtLink to="/shop" class="nav-cta" @click="closeMenu">Shop inventory</NuxtLink>
   </div>
 </template>

@@ -18,7 +18,10 @@ const { handleAnchorClick } = useSmoothScroll()
               {{ item }}
             </li>
           </ul>
-          <a href="embroidery-order.html" class="btn btn-accent">Get a Team Quote / Order Form</a>
+          <div class="teamwear-actions" style="display:flex;flex-wrap:wrap;gap:12px">
+            <NuxtLink to="/shop" class="btn btn-accent">Browse inventory</NuxtLink>
+            <a href="embroidery-order.html" class="btn btn-outline">Embroidery order form</a>
+          </div>
         </div>
         <div class="teamwear-visual">
           <img src="/assets/petes-sports-logo.png" alt="Pete's Sports">

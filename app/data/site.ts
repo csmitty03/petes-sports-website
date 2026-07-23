@@ -28,12 +28,13 @@ export interface Location {
 }
 
 export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Our Team', href: '#managers' },
-  { label: 'Services', href: '#services' },
-  { label: 'Teamwear', href: '#teamwear' },
-  { label: 'Locations', href: '#locations' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Shop', href: '/shop' },
+  { label: 'About', href: '/#about' },
+  { label: 'Our Team', href: '/#managers' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Teamwear', href: '/#teamwear' },
+  { label: 'Locations', href: '/#locations' },
+  { label: 'Contact', href: '/#contact' },
 ] as const
 
 export const managers: Person[] = [
@@ -66,6 +67,8 @@ export const services: Service[] = [
   {
     title: 'Sporting Equipment',
     description: 'Top quality hockey, baseball and more. We carry the best brands and help you find the right gear for your level.',
+    link: '/shop',
+    linkLabel: 'Browse inventory',
   },
   {
     title: 'Custom Embroidery & Cresting',

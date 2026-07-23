@@ -26,11 +26,12 @@ const { handleAnchorClick } = useSmoothScroll()
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="#managers" @click="handleAnchorClick($event, '#managers')">Our Team</a>
-            <a href="#services" @click="handleAnchorClick($event, '#services')">Services</a>
-            <a href="#teamwear" @click="handleAnchorClick($event, '#teamwear')">Teamwear</a>
-            <a href="#locations" @click="handleAnchorClick($event, '#locations')">Locations</a>
-            <a href="#contact" @click="handleAnchorClick($event, '#contact')">Contact</a>
+            <NuxtLink to="/shop">Shop</NuxtLink>
+            <a href="/#managers" @click="handleAnchorClick($event, '#managers')">Our Team</a>
+            <a href="/#services" @click="handleAnchorClick($event, '#services')">Services</a>
+            <a href="/#teamwear" @click="handleAnchorClick($event, '#teamwear')">Teamwear</a>
+            <a href="/#locations" @click="handleAnchorClick($event, '#locations')">Locations</a>
+            <a href="/#contact" @click="handleAnchorClick($event, '#contact')">Contact</a>
             <a href="mailto:sales@petessports.com">sales@petessports.com</a>
           </div>
         </div>
@@ -38,6 +39,7 @@ const { handleAnchorClick } = useSmoothScroll()
       <div class="footer-bottom">
         <span>&copy; {{ new Date().getFullYear() }} Pete's Sports. All rights reserved.</span>
         <div class="footer-legal">
+          <NuxtLink to="/shop">Shop inventory</NuxtLink>
           <a href="#">Privacy</a>
           <a href="#">Legal</a>
         </div>
