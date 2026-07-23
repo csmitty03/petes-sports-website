@@ -58,12 +58,12 @@ function catalogUrl() {
  */
 export async function useCatalog() {
   const { data, error, pending, refresh, status } = await useFetch<Catalog>(catalogUrl(), {
-    key: 'petes-catalog-v2',
+    key: 'petes-catalog-v3',
     default: () => emptyCatalog,
     server: false,
-    lazy: true,
-    // Large file — avoid short browser/proxy timeouts where possible
-    timeout: 120000,
+    lazy: false,
+    // Large file (~22MB) — give the browser time on slower connections
+    timeout: 180000,
   })
 
   if (error.value) {

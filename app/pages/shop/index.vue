@@ -12,6 +12,7 @@ const {
   productCount,
   pending,
   error,
+  status,
   refresh,
 } = await useCatalog()
 
@@ -68,7 +69,13 @@ function nextPage() {
   if (import.meta.client) window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-const isLoading = computed(() => pending.value && productCount.value === 0)
+// Show loading until the client finishes fetching catalog.json (22MB file).
+// status stays non-success while idle/pending so we don't flash "coming soon".
+const isLoading = computed(() => {
+  if (productCount.value > 0) return false
+  if (error.value) return false
+  return status.value !== 'success'
+})
 const loadFailed = computed(() => Boolean(error.value) && productCount.value === 0)
 </script>
 
