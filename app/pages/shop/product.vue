@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { formatCad } from '~/composables/useCatalog'
+import { resolveProductImage } from '~/utils/productImage'
 
 const route = useRoute()
 const { products, pending, error, refresh, productCount } = await useCatalog()
@@ -9,6 +10,10 @@ const product = computed(() => {
   if (!id) return null
   return products.value.find((p) => p.id === id) || null
 })
+
+const imgSrc = computed(() =>
+  resolveProductImage(product.value?.image || product.value?.imageThumb),
+)
 
 useSeoMeta({
   title: () => `${product.value?.name || 'Product'} | Pete's Sports`,
@@ -59,8 +64,8 @@ const isLoading = computed(() => pending.value && !product.value)
         <div v-else-if="product" class="product-detail">
           <div class="product-detail-media">
             <img
-              v-if="product.image || product.imageThumb"
-              :src="product.image || product.imageThumb || ''"
+              v-if="imgSrc"
+              :src="imgSrc"
               :alt="product.name"
             >
             <div v-else class="product-card-placeholder product-detail-placeholder">

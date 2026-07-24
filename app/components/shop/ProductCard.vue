@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import type { CatalogProduct } from '~/composables/useCatalog'
 import { formatCad } from '~/composables/useCatalog'
+import { resolveProductImage } from '~/utils/productImage'
 
-defineProps<{
+const props = defineProps<{
   product: CatalogProduct
 }>()
+
+const imgSrc = computed(() =>
+  resolveProductImage(props.product.imageThumb || props.product.image),
+)
 </script>
 
 <template>
   <NuxtLink :to="{ path: '/shop/product', query: { id: product.id } }" class="product-card">
     <div class="product-card-image">
       <img
-        v-if="product.imageThumb || product.image"
-        :src="product.imageThumb || product.image || ''"
+        v-if="imgSrc"
+        :src="imgSrc"
         :alt="product.name"
         loading="lazy"
       >

@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sync:lightspeed": "node scripts/sync-lightspeed.mjs"
+    "sync:lightspeed": "node scripts/sync-lightspeed.mjs",
+    "enrich:images": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/enrich-gear-images.ps1"
   },
   "dependencies": {
     "nuxt": "^4.4.8",

@@ -221,6 +221,28 @@ async function main() {
     brands,
   }
 
+  // Re-apply local image overrides (popular gear autofind) so a resync doesn't wipe them
+  try {
+    const overridesPath = join(root, 'public', 'data', 'image-overrides.json')
+    const raw = await readFile(overridesPath, 'utf8')
+    const overrides = JSON.parse(raw)
+    const images = overrides.images || {}
+    let applied = 0
+    for (const p of catalog.products) {
+      const entry = images[p.id]
+      const rel = typeof entry === 'string' ? entry : entry?.path
+      if (rel) {
+        p.image = rel
+        p.imageThumb = rel
+        applied++
+      }
+    }
+    catalog.imageOverridesApplied = applied
+    console.log(`[sync-lightspeed] Re-applied ${applied} local image overrides`)
+  } catch {
+    /* overrides optional */
+  }
+
   await mkdir(dirname(outPath), { recursive: true })
   await writeFile(outPath, JSON.stringify(catalog, null, 2) + '\n', 'utf8')
 
