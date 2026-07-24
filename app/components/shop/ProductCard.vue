@@ -10,6 +10,17 @@ const props = defineProps<{
 const imgSrc = computed(() =>
   resolveProductImage(props.product.imageThumb || props.product.image),
 )
+
+const priceLabel = computed(() => formatCad(props.product.price ?? props.product.priceExTax))
+
+function onImgError(e: Event) {
+  const el = e.target as HTMLImageElement | null
+  if (el) {
+    el.style.display = 'none'
+    const ph = el.parentElement?.querySelector('.product-card-placeholder') as HTMLElement | null
+    if (ph) ph.style.display = 'flex'
+  }
+}
 </script>
 
 <template>
@@ -20,8 +31,12 @@ const imgSrc = computed(() =>
         :src="imgSrc"
         :alt="product.name"
         loading="lazy"
+        @error="onImgError"
       >
-      <div v-else class="product-card-placeholder">
+      <div
+        class="product-card-placeholder"
+        :style="imgSrc ? 'display:none' : undefined"
+      >
         <span>Pete's Sports</span>
       </div>
     </div>
@@ -29,7 +44,7 @@ const imgSrc = computed(() =>
       <p v-if="product.brand" class="product-card-brand">{{ product.brand }}</p>
       <h3 class="product-card-title">{{ product.name }}</h3>
       <p v-if="product.category" class="product-card-meta">{{ product.category }}</p>
-      <p class="product-card-price">{{ formatCad(product.price) }}</p>
+      <p class="product-card-price">{{ priceLabel }}</p>
     </div>
   </NuxtLink>
 </template>

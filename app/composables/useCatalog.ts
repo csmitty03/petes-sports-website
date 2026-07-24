@@ -36,35 +36,61 @@ const emptyCatalog: Catalog = {
 }
 
 export function formatCad(price: number | null | undefined) {
-  if (price == null || Number.isNaN(price)) return 'Call for price'
+  if (price == null || price === '' || Number.isNaN(Number(price))) {
+    return 'Call for price'
+  }
   return new Intl.NumberFormat('en-CA', {
     style: 'currency',
     currency: 'CAD',
-  }).format(price)
-}
-
-function catalogUrl() {
-  const config = useRuntimeConfig()
-  const base = config.app.baseURL || '/'
-  const normalized = base.endsWith('/') ? base : `${base}/`
-  // Absolute path from site root (works on GitHub Pages with baseURL)
-  return `${normalized}data/catalog.json`
+  }).format(Number(price))
 }
 
 /**
- * Load catalog on the client only.
- * A 22k-product JSON is too large to embed in SSR HTML; the previous
- * server fetch failed during generate and left the shop stuck empty.
+ * Catalog lives at {baseURL}data/catalog.json on GitHub Pages.
+ * Do NOT pre-bake baseURL into the path — $fetch already applies app.baseURL.
+ */
+function catalogRequestPath() {
+  // Leading slash = site-absolute; Nuxt prefixes app.baseURL (/petes-sports-website/)
+  return '/data/catalog.json'
+}
+
+/**
+ * Load catalog on the client only (file is large; avoid SSR payload bloat).
  */
 export async function useCatalog() {
-  const { data, error, pending, refresh, status } = await useFetch<Catalog>(catalogUrl(), {
-    key: 'petes-catalog-v3',
+  const { data, error, pending, refresh, status } = await useFetch<Catalog>(catalogRequestPath(), {
+    key: 'petes-catalog-v4',
     default: () => emptyCatalog,
     server: false,
     lazy: false,
-    // Large file (~22MB) — give the browser time on slower connections
     timeout: 180000,
+    // Ensure we hit the static file, not an API route
+    baseURL: undefined,
   })
+
+  // Fallback: if useFetch mishandles baseURL, try an explicit absolute URL once
+  if (import.meta.client) {
+    watch(
+      error,
+      async (err) => {
+        if (!err) return
+        if ((data.value?.productCount || 0) > 0) return
+        try {
+          const config = useRuntimeConfig()
+          const base = (config.app.baseURL || '/').replace(/\/?$/, '/')
+          const url = `${window.location.origin}${base}data/catalog.json`
+          console.warn('[catalog] primary fetch failed, retrying', url, err)
+          const raw = await $fetch<Catalog>(url, { timeout: 180000 })
+          if (raw?.products?.length) {
+            data.value = raw
+          }
+        } catch (e) {
+          console.warn('[catalog] retry failed', e)
+        }
+      },
+      { immediate: true },
+    )
+  }
 
   if (error.value) {
     console.warn('[catalog] Failed to load catalog.json', error.value)

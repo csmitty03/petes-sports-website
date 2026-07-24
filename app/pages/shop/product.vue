@@ -15,6 +15,10 @@ const imgSrc = computed(() =>
   resolveProductImage(product.value?.image || product.value?.imageThumb),
 )
 
+const priceLabel = computed(() =>
+  formatCad(product.value?.price ?? product.value?.priceExTax),
+)
+
 useSeoMeta({
   title: () => `${product.value?.name || 'Product'} | Pete's Sports`,
   description: () =>
@@ -76,7 +80,7 @@ const isLoading = computed(() => pending.value && !product.value)
           <div class="product-detail-info">
             <p v-if="product.brand" class="product-card-brand">{{ product.brand }}</p>
             <h1>{{ product.name }}</h1>
-            <p class="product-detail-price">{{ formatCad(product.price) }}</p>
+            <p class="product-detail-price">{{ priceLabel }}</p>
 
             <dl class="product-meta-list">
               <div v-if="product.sku">
