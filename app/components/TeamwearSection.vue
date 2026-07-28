@@ -2,6 +2,7 @@
 import { teamwearItems } from '~/data/site'
 
 const { handleAnchorClick } = useSmoothScroll()
+const { shopHref } = useSiteHref()
 </script>
 
 <template>
@@ -19,7 +20,7 @@ const { handleAnchorClick } = useSmoothScroll()
             </li>
           </ul>
           <div class="teamwear-actions" style="display:flex;flex-wrap:wrap;gap:12px">
-            <NuxtLink to="/shop" class="btn btn-accent">Browse inventory</NuxtLink>
+            <a :href="shopHref" class="btn btn-accent">Browse inventory</a>
             <a href="embroidery-order.html" class="btn btn-outline">Embroidery order form</a>
           </div>
         </div>

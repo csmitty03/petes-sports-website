@@ -8,9 +8,20 @@ const props = defineProps<{
 
 const { element, isVisible } = useReveal()
 const { handleAnchorClick } = useSmoothScroll()
+const { siteHref, shopHref } = useSiteHref()
 
 const isHash = computed(() => (props.service.link || '').startsWith('#'))
 const isExternal = computed(() => /^https?:/i.test(props.service.link || ''))
+const isShop = computed(() => {
+  const l = (props.service.link || '').replace(/\/$/, '')
+  return l.endsWith('shop')
+})
+const resolvedHref = computed(() => {
+  if (!props.service.link) return '#'
+  if (isShop.value) return shopHref.value
+  if (isHash.value || isExternal.value) return props.service.link
+  return siteHref(props.service.link)
+})
 </script>
 
 <template>
@@ -41,13 +52,14 @@ const isExternal = computed(() => /^https?:/i.test(props.service.link || ''))
       {{ service.linkLabel || 'Learn more' }}
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
     </a>
-    <NuxtLink
+    <!-- Plain <a> so static pages like /shop/ get a full browser load (not Nuxt SPA 404) -->
+    <a
       v-else-if="service.link"
-      :to="service.link"
+      :href="resolvedHref"
       class="service-link"
     >
       {{ service.linkLabel || 'Learn more' }}
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-    </NuxtLink>
+    </a>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { handleAnchorClick } = useSmoothScroll()
+const { shopHref } = useSiteHref()
 </script>
 
 <template>
@@ -26,7 +27,7 @@ const { handleAnchorClick } = useSmoothScroll()
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <NuxtLink to="/shop">Shop</NuxtLink>
+            <a :href="shopHref">Shop</a>
             <a href="/#managers" @click="handleAnchorClick($event, '#managers')">Our Team</a>
             <a href="/#services" @click="handleAnchorClick($event, '#services')">Services</a>
             <a href="/#teamwear" @click="handleAnchorClick($event, '#teamwear')">Teamwear</a>
@@ -39,7 +40,7 @@ const { handleAnchorClick } = useSmoothScroll()
       <div class="footer-bottom">
         <span>&copy; {{ new Date().getFullYear() }} Pete's Sports. All rights reserved.</span>
         <div class="footer-legal">
-          <NuxtLink to="/shop">Shop inventory</NuxtLink>
+          <a :href="shopHref">Shop inventory</a>
           <a href="#">Privacy</a>
           <a href="#">Legal</a>
         </div>
