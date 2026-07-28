@@ -18,10 +18,10 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      // Product detail uses query ?id= on /shop/product (one static page)
-      // so we do not prerender tens of thousands of product URLs.
+      // Shop is a static public/shop/index.html (vanilla JS) so it is not
+      // overwritten by a Nuxt route. Do not prerender /shop here.
       crawlLinks: true,
-      routes: ['/shop', '/shop/product'],
+      routes: ['/'],
     },
   },
 })

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop | Pete's Sports</title>
+  <meta name="description" content="Browse Pete's Sports inventory — hockey, baseball, and sporting goods." />
+  <link rel="icon" href="../assets/petes-sports-logo.png" type="image/png" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --charcoal: #1a1a1a;
+      --gray-600: #525252;
+      --gray-400: #a3a3a3;
+      --gray-200: #e5e5e5;
+      --gray-100: #f5f5f5;
+      --white: #fff;
+      --accent: #e30613;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      color: var(--charcoal);
+      background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 240px);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .top {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 500;
+      padding: 10px 16px;
+    }
+    .nav {
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-logo img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 16px; flex-wrap: wrap; font-weight: 600; font-size: .95rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 28px 20px 64px; }
+    h1 {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: .02em;
+      margin: 8px 0 10px;
+    }
+    .muted { color: var(--gray-600); }
+    .synced { font-size: .88rem; color: var(--gray-400); margin-top: 8px; }
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 10px;
+      margin: 22px 0 12px;
+    }
+    @media (max-width: 800px) {
+      .toolbar { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    input, select, button.btn {
+      width: 100%;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: inherit;
+      background: #fff;
+    }
+    input:focus, select:focus { outline: 2px solid rgba(227,6,19,.25); border-color: var(--accent); }
+    .count { font-size: .9rem; color: var(--gray-600); margin-bottom: 16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+    .card-img {
+      aspect-ratio: 1;
+      background: var(--gray-100);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a, #2d2d2d);
+      color: #fff;
+      font-family: Impact, "Arial Black", sans-serif;
+      letter-spacing: .04em;
+    }
+    .card-body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .brand { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+    .title { font-size: 1rem; font-weight: 600; line-height: 1.3; color: var(--black); }
+    .meta { font-size: .85rem; color: var(--gray-600); }
+    .price { margin-top: auto; padding-top: 10px; font-weight: 700; font-size: 1.05rem; }
+    .pager {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin: 28px 0 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      background: var(--black);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      width: auto;
+      min-width: 120px;
+    }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn.outline { background: #fff; color: var(--black); border: 1px solid var(--gray-200); }
+    .empty {
+      text-align: center;
+      padding: 48px 20px;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+    }
+    .empty h2 { margin-bottom: 8px; }
+    .status-bar {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      margin-bottom: 16px;
+    }
+    .status-bar.error { border-color: #fca5a5; background: #fef2f2; }
+    .detail {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 768px) { .detail { grid-template-columns: 1fr; } }
+    .detail.open { display: grid; }
+    .detail-img { aspect-ratio: 1; background: var(--gray-100); border-radius: 12px; overflow: hidden; position: relative; }
+    .detail-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hidden { display: none !important; }
+    .back { display: inline-block; margin: 0 0 16px; font-weight: 700; color: var(--accent); cursor: pointer; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="top">Under new ownership &amp; management — same great service, fresh energy.</div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../"><img src="../assets/petes-sports-logo.png" alt="Pete's Sports" /></a>
+      <div class="nav-links">
+        <a href="../">Home</a>
+        <a href="./">Shop</a>
+        <a href="../#contact">Contact</a>
+        <a href="tel:+15194339555">(519) 433-9555</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="list-view">
+      <header>
+        <div style="font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">Inventory</div>
+        <h1>Shop Pete's Sports</h1>
+        <p class="muted">Browse gear from our store inventory. Prices are for reference — contact us to confirm availability and order.</p>
+        <p id="synced" class="synced"></p>
+      </header>
+
+      <div id="status" class="status-bar">Loading inventory…</div>
+
+      <div id="controls" class="hidden">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search name, brand, SKU…" autocomplete="off" />
+          <select id="category"><option value="">All categories</option></select>
+          <select id="brand"><option value="">All brands</option></select>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.9rem;white-space:nowrap">
+            <input id="photosOnly" type="checkbox" /> Photos only
+          </label>
+        </div>
+        <p id="count" class="count"></p>
+        <div id="grid" class="grid"></div>
+        <div id="pager" class="pager hidden">
+          <button class="btn outline" id="prevBtn" type="button">Previous</button>
+          <span id="pageLabel"></span>
+          <button class="btn outline" id="nextBtn" type="button">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="detail-view" class="hidden">
+      <div class="back" id="backBtn">← Back to shop</div>
+      <div id="detail" class="detail open"></div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  // Works on GitHub Pages (/petes-sports-website/shop/) and local file/server
+  function catalogUrl() {
+    var path = window.location.pathname.replace(/\\/g, '/')
+    // .../shop/ or .../shop/index.html -> .../data/catalog-lite.json
+    if (path.endsWith('/')) path = path.slice(0, -1)
+    if (path.endsWith('/index.html')) path = path.slice(0, -11)
+    if (path.endsWith('/shop')) path = path.slice(0, -5)
+    if (!path.endsWith('/')) path += '/'
+    return window.location.origin + path + 'data/catalog-lite.json'
+  }
+
+  // Also try common absolute bases
+  function catalogUrls() {
+    var urls = []
+    var path = window.location.pathname.replace(/\\/g, '/')
+    var baseMatch = path.match(/^(.*?\/petes-sports-website)(?:\/|$)/)
+    if (baseMatch) {
+      urls.push(window.location.origin + baseMatch[1] + '/data/catalog-lite.json')
+      urls.push(window.location.origin + baseMatch[1] + '/data/catalog.json')
+    }
+    urls.push(catalogUrl())
+    urls.push(window.location.origin + '/petes-sports-website/data/catalog-lite.json')
+    urls.push('../data/catalog-lite.json')
+    urls.push('/petes-sports-website/data/catalog-lite.json')
+    // unique
+    return urls.filter(function (u, i, a) { return a.indexOf(u) === i })
+  }
+
+  function money(n) {
+    if (n == null || n === '' || isNaN(Number(n))) return 'Call for price'
+    try {
+      return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(Number(n))
+    } catch (e) {
+      return '$' + Number(n).toFixed(2)
+    }
+  }
+
+  function imgUrl(path) {
+    if (!path) return null
+    if (/^https?:\/\//i.test(path)) {
+      if (/placeholder|no-image/i.test(path)) return null
+      return path
+    }
+    var m = window.location.pathname.match(/^(.*?\/petes-sports-website)(?:\/|$)/)
+    var base = m ? m[1] + '/' : '/petes-sports-website/'
+    return window.location.origin + base + String(path).replace(/^\//, '')
+  }
+
+  var state = {
+    products: [],
+    categories: [],
+    brands: [],
+    search: '',
+    category: '',
+    brand: '',
+    photosOnly: false,
+    page: 1,
+    pageSize: 48
+  }
+
+  var el = {
+    status: document.getElementById('status'),
+    controls: document.getElementById('controls'),
+    grid: document.getElementById('grid'),
+    count: document.getElementById('count'),
+    synced: document.getElementById('synced'),
+    search: document.getElementById('search'),
+    category: document.getElementById('category'),
+    brand: document.getElementById('brand'),
+    photosOnly: document.getElementById('photosOnly'),
+    pager: document.getElementById('pager'),
+    pageLabel: document.getElementById('pageLabel'),
+    prevBtn: document.getElementById('prevBtn'),
+    nextBtn: document.getElementById('nextBtn'),
+    listView: document.getElementById('list-view'),
+    detailView: document.getElementById('detail-view'),
+    detail: document.getElementById('detail'),
+    backBtn: document.getElementById('backBtn')
+  }
+
+  function setStatus(msg, isError) {
+    el.status.textContent = msg
+    el.status.className = 'status-bar' + (isError ? ' error' : '')
+    el.status.classList.remove('hidden')
+  }
+
+  function filtered() {
+    var q = state.search.trim().toLowerCase()
+    return state.products.filter(function (p) {
+      if (state.photosOnly && !p.image) return false
+      if (state.category && p.category !== state.category) return false
+      if (state.brand && p.brand !== state.brand) return false
+      if (!q) return true
+      var hay = [p.name, p.sku, p.brand, p.category].join(' ').toLowerCase()
+      return hay.indexOf(q) !== -1
+    })
+  }
+
+  function render() {
+    var list = filtered()
+    var pages = Math.max(1, Math.ceil(list.length / state.pageSize))
+    if (state.page > pages) state.page = pages
+    var start = (state.page - 1) * state.pageSize
+    var pageItems = list.slice(start, start + state.pageSize)
+
+    if (!list.length) {
+      el.count.textContent = '0 products'
+      el.grid.innerHTML = '<div class="empty"><h2>No products match</h2><p class="muted">Try another search or clear filters.</p></div>'
+      el.pager.classList.add('hidden')
+      return
+    }
+
+    el.count.textContent = 'Showing ' + (start + 1) + '–' + Math.min(start + state.pageSize, list.length) +
+      ' of ' + list.length.toLocaleString() + ' products'
+
+    el.grid.innerHTML = pageItems.map(function (p) {
+      var src = imgUrl(p.image)
+      var imgHtml = src
+        ? '<img src="' + src + '" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" /><div class="ph" style="display:none">Pete\'s Sports</div>'
+        : '<div class="ph">Pete\'s Sports</div>'
+      return (
+        '<article class="card" data-id="' + p.id + '">' +
+          '<div class="card-img">' + imgHtml + '</div>' +
+          '<div class="card-body">' +
+            (p.brand ? '<div class="brand">' + escapeHtml(p.brand) + '</div>' : '') +
+            '<div class="title">' + escapeHtml(p.name || 'Product') + '</div>' +
+            (p.category ? '<div class="meta">' + escapeHtml(p.category) + '</div>' : '') +
+            '<div class="price">' + money(p.price) + '</div>' +
+          '</div>' +
+        '</article>'
+      )
+    }).join('')
+
+    el.pager.classList.toggle('hidden', pages <= 1)
+    el.pageLabel.textContent = 'Page ' + state.page + ' of ' + pages
+    el.prevBtn.disabled = state.page <= 1
+    el.nextBtn.disabled = state.page >= pages
+
+    Array.prototype.forEach.call(el.grid.querySelectorAll('.card'), function (card) {
+      card.addEventListener('click', function () {
+        showDetail(card.getAttribute('data-id'))
+      })
+    })
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+  }
+
+  function showDetail(id) {
+    var p = null
+    for (var i = 0; i < state.products.length; i++) {
+      if (state.products[i].id === id) { p = state.products[i]; break }
+    }
+    if (!p) return
+    var src = imgUrl(p.image)
+    var imgHtml = src
+      ? '<img src="' + src + '" alt="" />'
+      : '<div class="ph">Pete\'s Sports</div>'
+    var subject = encodeURIComponent('Inquiry: ' + (p.name || '') + ' (' + (p.sku || p.id) + ')')
+    var body = encodeURIComponent('Hi Pete\'s Sports,\n\nI\'m interested in:\n' + (p.name || '') + '\nSKU: ' + (p.sku || 'n/a') + '\nPrice shown: ' + money(p.price) + '\n\nPlease let me know availability.\n\nThanks')
+    el.detail.innerHTML =
+      '<div class="detail-img">' + imgHtml + '</div>' +
+      '<div>' +
+        (p.brand ? '<div class="brand">' + escapeHtml(p.brand) + '</div>' : '') +
+        '<h2 style="margin:6px 0 10px;font-size:1.8rem">' + escapeHtml(p.name || 'Product') + '</h2>' +
+        '<div class="price" style="font-size:1.4rem;margin-bottom:12px">' + money(p.price) + '</div>' +
+        (p.sku ? '<p class="meta"><strong>SKU:</strong> ' + escapeHtml(p.sku) + '</p>' : '') +
+        (p.category ? '<p class="meta"><strong>Category:</strong> ' + escapeHtml(p.category) + '</p>' : '') +
+        '<p class="muted" style="margin:14px 0">Browse-only catalog — order by phone or email. We\'ll confirm stock at London or Strathroy.</p>' +
+        '<p style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">' +
+          '<a class="btn" style="display:inline-block;text-align:center" href="mailto:sales@petessports.com?subject=' + subject + '&body=' + body + '">Email about this item</a>' +
+          '<a class="btn outline" style="display:inline-block;text-align:center" href="tel:+15194339555">Call (519) 433-9555</a>' +
+        '</p>' +
+      '</div>'
+    el.listView.classList.add('hidden')
+    el.detailView.classList.remove('hidden')
+    window.scrollTo(0, 0)
+  }
+
+  function fillSelects() {
+    el.category.innerHTML = '<option value="">All categories</option>' +
+      state.categories.filter(Boolean).map(function (c) {
+        return '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>'
+      }).join('')
+    el.brand.innerHTML = '<option value="">All brands</option>' +
+      state.brands.filter(Boolean).map(function (b) {
+        return '<option value="' + escapeHtml(b) + '">' + escapeHtml(b) + '</option>'
+      }).join('')
+  }
+
+  async function load() {
+    setStatus('Loading inventory…')
+    var urls = catalogUrls()
+    var lastErr = null
+    for (var i = 0; i < urls.length; i++) {
+      try {
+        setStatus('Loading inventory… (' + (i + 1) + '/' + urls.length + ')')
+        var res = await fetch(urls[i], { cache: 'no-store' })
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + urls[i])
+        var json = await res.json()
+        if (!json || !Array.isArray(json.products) || !json.products.length) {
+          throw new Error('Empty catalog from ' + urls[i])
+        }
+        state.products = json.products
+        state.categories = json.categories || unique(json.products.map(function (p) { return p.category }).filter(Boolean)).sort()
+        state.brands = json.brands || unique(json.products.map(function (p) { return p.brand }).filter(Boolean)).sort()
+        el.status.classList.add('hidden')
+        el.controls.classList.remove('hidden')
+        if (json.syncedAt) {
+          try {
+            el.synced.textContent = 'Catalog updated ' + new Date(json.syncedAt).toLocaleString('en-CA') +
+              ' · ' + json.products.length.toLocaleString() + ' items'
+          } catch (e) {
+            el.synced.textContent = json.products.length.toLocaleString() + ' items'
+          }
+        } else {
+          el.synced.textContent = json.products.length.toLocaleString() + ' items'
+        }
+        fillSelects()
+        render()
+        console.log('[shop] loaded', json.products.length, 'from', urls[i])
+        return
+      } catch (e) {
+        lastErr = e
+        console.warn('[shop] failed', urls[i], e)
+      }
+    }
+    setStatus('Could not load inventory. ' + (lastErr && lastErr.message ? lastErr.message : '') + ' Please refresh or call (519) 433-9555.', true)
+  }
+
+  function unique(arr) {
+    var o = {}, out = []
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] && !o[arr[i]]) { o[arr[i]] = 1; out.push(arr[i]) }
+    }
+    return out
+  }
+
+  el.search.addEventListener('input', function () { state.search = el.search.value; state.page = 1; render() })
+  el.category.addEventListener('change', function () { state.category = el.category.value; state.page = 1; render() })
+  el.brand.addEventListener('change', function () { state.brand = el.brand.value; state.page = 1; render() })
+  el.photosOnly.addEventListener('change', function () { state.photosOnly = el.photosOnly.checked; state.page = 1; render() })
+  el.prevBtn.addEventListener('click', function () { if (state.page > 1) { state.page--; render(); window.scrollTo(0, 0) } })
+  el.nextBtn.addEventListener('click', function () { state.page++; render(); window.scrollTo(0, 0) })
+  el.backBtn.addEventListener('click', function () {
+    el.detailView.classList.add('hidden')
+    el.listView.classList.remove('hidden')
+  })
+
+  load()
+})()
+  </script>
+</body>
+</html>

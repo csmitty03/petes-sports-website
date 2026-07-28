@@ -53,7 +53,7 @@ onUnmounted(() => {
           {{ link.label }}
         </NuxtLink>
       </div>
-      <NuxtLink to="/shop" class="nav-cta nav-cta-desktop">
+      <NuxtLink to="/shop/" class="nav-cta nav-cta-desktop">
         Shop
       </NuxtLink>
       <button class="nav-toggle" aria-label="Toggle menu" @click="toggleMenu">
@@ -71,6 +71,6 @@ onUnmounted(() => {
     >
       {{ link.label }}
     </NuxtLink>
-    <NuxtLink to="/shop" class="nav-cta" @click="closeMenu">Shop inventory</NuxtLink>
+    <NuxtLink to="/shop/" class="nav-cta" @click="closeMenu">Shop inventory</NuxtLink>
   </div>
 </template>

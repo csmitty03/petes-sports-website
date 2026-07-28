@@ -28,7 +28,7 @@ export interface Location {
 }
 
 export const navLinks = [
-  { label: 'Shop', href: '/shop' },
+  { label: 'Shop', href: '/shop/' },
   { label: 'About', href: '/#about' },
   { label: 'Our Team', href: '/#managers' },
   { label: 'Services', href: '/#services' },
@@ -67,7 +67,7 @@ export const services: Service[] = [
   {
     title: 'Sporting Equipment',
     description: 'Top quality hockey, baseball and more. We carry the best brands and help you find the right gear for your level.',
-    link: '/shop',
+    link: '/shop/',
     linkLabel: 'Browse inventory',
   },
   {
