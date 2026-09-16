@@ -6,6 +6,8 @@ Live site: https://csmitty03.github.io/petes-sports-website/
 
 Shop (inventory): https://csmitty03.github.io/petes-sports-website/shop
 
+Gemini Pro Shop: https://csmitty03.github.io/petes-sports-website/gemini
+
 ## Lightspeed inventory (X-Series)
 
 The **Shop** page is a browse-only catalog synced from Lightspeed Retail (X-Series).

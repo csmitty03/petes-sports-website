@@ -1,6 +1,16 @@
 <script setup lang="ts">
+const route = useRoute()
 const { handleAnchorClick } = useSmoothScroll()
-const { shopHref } = useSiteHref()
+const { shopHref, siteHref } = useSiteHref()
+const isHome = computed(() => route.path === '/' || route.path === '')
+
+function homeHash(hash: string) {
+  return isHome.value ? hash : siteHref(`/${hash}`)
+}
+
+function onHomeHashClick(event: MouseEvent, hash: string) {
+  if (isHome.value) handleAnchorClick(event, hash)
+}
 </script>
 
 <template>
@@ -19,8 +29,12 @@ const { shopHref } = useSiteHref()
             <span><strong>London</strong> — 900 Oxford St E, Unit 15</span>
             <span>Mon–Fri 10–6 &bull; Sat 10–4 &bull; Sun Closed</span>
             <span class="footer-location-divider" />
-            <span><strong>Strathroy</strong> — 667 Adair Blvd</span>
+            <NuxtLink to="/gemini">
+              <strong>Strathroy</strong> — 667 Adair Blvd
+            </NuxtLink>
             <span>Gemini Sportsplex Pro Shop</span>
+            <span>Open 7 days a week</span>
+            <span>Mon–Fri 3–9 &bull; Sat–Sun 8–6</span>
             <a href="tel:+15194339555">(519) 433-9555</a>
           </div>
         </div>
@@ -28,11 +42,12 @@ const { shopHref } = useSiteHref()
           <h4>Quick Links</h4>
           <div class="footer-links">
             <a :href="shopHref">Shop</a>
-            <a href="/#managers" @click="handleAnchorClick($event, '#managers')">Our Team</a>
-            <a href="/#services" @click="handleAnchorClick($event, '#services')">Services</a>
-            <a href="/#teamwear" @click="handleAnchorClick($event, '#teamwear')">Teamwear</a>
-            <a href="/#locations" @click="handleAnchorClick($event, '#locations')">Locations</a>
-            <a href="/#contact" @click="handleAnchorClick($event, '#contact')">Contact</a>
+            <NuxtLink to="/gemini">Gemini Pro Shop</NuxtLink>
+            <a :href="homeHash('#managers')" @click="onHomeHashClick($event, '#managers')">Our Team</a>
+            <a :href="homeHash('#services')" @click="onHomeHashClick($event, '#services')">Services</a>
+            <a :href="homeHash('#teamwear')" @click="onHomeHashClick($event, '#teamwear')">Teamwear</a>
+            <a :href="homeHash('#locations')" @click="onHomeHashClick($event, '#locations')">Locations</a>
+            <a :href="homeHash('#contact')" @click="onHomeHashClick($event, '#contact')">Contact</a>
             <a href="mailto:sales@petessports.com">sales@petessports.com</a>
           </div>
         </div>

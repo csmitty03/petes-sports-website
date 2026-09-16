@@ -3,8 +3,10 @@ import { navLinks } from '~/data/site'
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
+const route = useRoute()
 const { handleAnchorClick } = useSmoothScroll()
 const { siteHref, shopHref } = useSiteHref()
+const isHome = computed(() => route.path === '/' || route.path === '')
 
 const menuIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>`
 const closeIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>`
@@ -22,7 +24,7 @@ function closeMenu() {
 }
 
 function onNavClick(event: MouseEvent, href: string) {
-  if (href.startsWith('#') || href.startsWith('/#')) {
+  if (isHome.value && (href.startsWith('#') || href.startsWith('/#'))) {
     handleAnchorClick(event, href.startsWith('/#') ? href.slice(1) : href)
   }
   closeMenu()
@@ -31,7 +33,10 @@ function onNavClick(event: MouseEvent, href: string) {
 function linkHref(href: string) {
   // Shop is a static HTML page — must leave the Nuxt SPA
   if (href.replace(/\/$/, '').endsWith('shop')) return shopHref.value
-  if (href.startsWith('/#') || href.startsWith('#')) return href
+  if (href.startsWith('/#') || href.startsWith('#')) {
+    const hash = href.startsWith('/#') ? href.slice(1) : href
+    return isHome.value ? hash : siteHref(href.startsWith('#') ? `/${href}` : href)
+  }
   return siteHref(href)
 }
 
@@ -66,7 +71,7 @@ onUnmounted(() => {
           </a>
           <a
             v-else-if="link.href.startsWith('/#') || link.href.startsWith('#')"
-            :href="link.href"
+            :href="linkHref(link.href)"
             @click="onNavClick($event, link.href)"
           >
             {{ link.label }}
@@ -99,7 +104,7 @@ onUnmounted(() => {
       </a>
       <a
         v-else-if="link.href.startsWith('/#') || link.href.startsWith('#')"
-        :href="link.href"
+        :href="linkHref(link.href)"
         @click="onNavClick($event, link.href)"
       >
         {{ link.label }}

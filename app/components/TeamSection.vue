@@ -1,5 +1,20 @@
 <script setup lang="ts">
-import { managers, salesReps } from '~/data/site'
+import { managers as defaultManagers, salesReps as defaultSalesReps, type Person } from '~/data/site'
+
+const props = withDefaults(defineProps<{
+  managers?: Person[]
+  salesReps?: Person[]
+  salesLabel?: string
+  salesTitle?: string
+  salesDesc?: string
+}>(), {
+  salesLabel: 'Main Store',
+  salesTitle: 'Meet the Sales Reps',
+  salesDesc: "Our London store team is here to help you find the right gear.",
+})
+
+const teamManagers = computed(() => props.managers ?? defaultManagers)
+const teamSalesReps = computed(() => props.salesReps ?? defaultSalesReps)
 </script>
 
 <template>
@@ -12,19 +27,19 @@ import { managers, salesReps } from '~/data/site'
       </RevealBlock>
 
       <div class="managers-grid">
-        <PersonCard v-for="person in managers" :key="person.email ?? person.name" :person="person" reveal />
+        <PersonCard v-for="person in teamManagers" :key="person.email ?? person.name" :person="person" reveal />
       </div>
 
       <RevealBlock class="team-divider" />
 
       <RevealBlock class="section-header">
-        <span class="section-label">Main Store</span>
-        <h2 class="section-title">Meet the Sales Reps</h2>
-        <p class="section-desc">Our London store team is here to help you find the right gear.</p>
+        <span class="section-label">{{ salesLabel }}</span>
+        <h2 class="section-title">{{ salesTitle }}</h2>
+        <p class="section-desc">{{ salesDesc }}</p>
       </RevealBlock>
 
       <div class="sales-reps-grid">
-        <PersonCard v-for="person in salesReps" :key="person.name" :person="person" reveal />
+        <PersonCard v-for="person in teamSalesReps" :key="person.name" :person="person" reveal />
       </div>
     </div>
   </section>

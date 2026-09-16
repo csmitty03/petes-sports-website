@@ -25,10 +25,21 @@ export interface Location {
   phone: string
   email: string
   hours: string[]
+  pageHref?: string
+  pageLabel?: string
+}
+
+export interface LocalTeam {
+  name: string
+  sport: string
+  area?: string
+  logo?: string
+  initials: string
 }
 
 export const navLinks = [
   { label: 'Shop', href: '/shop/' },
+  { label: 'Gemini', href: '/gemini' },
   { label: 'About', href: '/#about' },
   { label: 'Our Team', href: '/#managers' },
   { label: 'Services', href: '/#services' },
@@ -62,6 +73,63 @@ export const salesReps: Person[] = [
   { initials: 'JP', name: 'John Pearce', role: 'Sales Representative', location: "Pete's Sports — London" },
   { initials: 'KL', name: 'Kaden Lange', role: 'Sales Representative', location: "Pete's Sports — London" },
   { initials: 'QG', name: 'Quinn Gavin-White', role: 'Sales Representative', location: "Pete's Sports — London" },
+]
+
+export const geminiManagers: Person[] = [
+  {
+    initials: 'LF',
+    name: 'Larry Ford',
+    role: 'General Manager',
+    location: "Oversees all Pete's Sports operations",
+    email: 'lford@petessports.com',
+    lead: true,
+  },
+  {
+    initials: 'CS',
+    name: 'Carsen Smith',
+    role: 'Store Manager',
+    location: 'Gemini Sportsplex Pro Shop — Strathroy',
+    email: 'csmith@petessports.com',
+  },
+]
+
+export const geminiSalesReps: Person[] = [
+  { initials: 'MV', name: 'Mason Vandenburg', role: 'Sales Representative', location: 'Gemini Sportsplex Pro Shop — Strathroy' },
+  { initials: 'OV', name: 'Owen Van Geffen', role: 'Sales Representative', location: 'Gemini Sportsplex Pro Shop — Strathroy' },
+  { initials: 'QW', name: 'Quin Wardell', role: 'Sales Representative', location: 'Gemini Sportsplex Pro Shop — Strathroy' },
+]
+
+export const geminiHours = [
+  { label: 'Monday – Friday', time: '3:00 PM – 9:00 PM' },
+  { label: 'Saturday – Sunday', time: '8:00 AM – 6:00 PM' },
+] as const
+
+export const geminiLocalTeams: LocalTeam[] = [
+  {
+    name: 'Bluewater Hawks',
+    sport: 'Hockey',
+    area: 'Strathroy & area',
+    logo: '/assets/bluewater-hawks-logo.jpg',
+    initials: 'BH',
+  },
+  {
+    name: 'Strathroy Royals',
+    sport: 'Baseball',
+    area: 'Strathroy',
+    initials: 'SR',
+  },
+  {
+    name: 'Strathroy Jr. Rockets',
+    sport: 'Hockey',
+    area: 'Strathroy',
+    initials: 'JR',
+  },
+  {
+    name: 'North Middlesex Jr. Stars',
+    sport: 'Hockey',
+    area: 'Park Hill teams',
+    initials: 'NS',
+  },
 ]
 
 export const services: Service[] = [
@@ -133,13 +201,16 @@ export const locations: Location[] = [
     title: "Pete's Sports — Strathroy",
     subtitle: 'Gemini Sportsplex Pro Shop',
     address: ['667 Adair Blvd', 'Strathroy, ON N7G 3H8'],
-    note: "Located inside the Gemini Sportsplex. Pop in while you're at the arena for hockey gear, equipment, and teamwear.",
+    note: "Located inside the Gemini Sportsplex. Open 7 days a week — pop in while you're at the arena for hockey gear, equipment, and teamwear.",
     phone: '(519) 433-9555',
     email: 'sales@petessports.com',
     hours: [
-      'Open during Gemini Sportsplex arena hours.',
-      'Call ahead to confirm availability.',
+      'Open 7 days a week',
+      'Monday – Friday: 3:00 PM – 9:00 PM',
+      'Saturday – Sunday: 8:00 AM – 6:00 PM',
     ],
+    pageHref: '/gemini',
+    pageLabel: 'Explore the Gemini Pro Shop',
   },
 ]
 
