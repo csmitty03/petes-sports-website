@@ -38,7 +38,7 @@ export interface LocalTeam {
 }
 
 export const navLinks = [
-  { label: 'Shop', href: '/shop/' },
+  { label: 'Home', href: '/' },
   { label: 'Gemini', href: '/gemini' },
   { label: 'About', href: '/#about' },
   { label: 'Our Team', href: '/#managers' },

@@ -31,8 +31,6 @@ function onNavClick(event: MouseEvent, href: string) {
 }
 
 function linkHref(href: string) {
-  // Shop is a static HTML page — must leave the Nuxt SPA
-  if (href.replace(/\/$/, '').endsWith('shop')) return shopHref.value
   if (href.startsWith('/#') || href.startsWith('#')) {
     const hash = href.startsWith('/#') ? href.slice(1) : href
     return isHome.value ? hash : siteHref(href.startsWith('#') ? `/${href}` : href)
@@ -40,8 +38,11 @@ function linkHref(href: string) {
   return siteHref(href)
 }
 
-function isShopLink(href: string) {
-  return href.replace(/\/$/, '').endsWith('shop')
+function onHomeClick() {
+  closeMenu()
+  if (isHome.value && import.meta.client) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 }
 
 onMounted(() => {
@@ -62,15 +63,8 @@ onUnmounted(() => {
       </NuxtLink>
       <div class="nav-links">
         <template v-for="link in navLinks" :key="link.href">
-          <!-- Full page load for static shop -->
           <a
-            v-if="isShopLink(link.href)"
-            :href="shopHref"
-          >
-            {{ link.label }}
-          </a>
-          <a
-            v-else-if="link.href.startsWith('/#') || link.href.startsWith('#')"
+            v-if="link.href.startsWith('/#') || link.href.startsWith('#')"
             :href="linkHref(link.href)"
             @click="onNavClick($event, link.href)"
           >
@@ -79,6 +73,7 @@ onUnmounted(() => {
           <NuxtLink
             v-else
             :to="link.href"
+            @click="link.href === '/' ? onHomeClick() : closeMenu()"
           >
             {{ link.label }}
           </NuxtLink>
@@ -96,14 +91,7 @@ onUnmounted(() => {
   <div class="mobile-menu" :class="{ open: isMenuOpen }">
     <template v-for="link in navLinks" :key="`mobile-${link.href}`">
       <a
-        v-if="isShopLink(link.href)"
-        :href="shopHref"
-        @click="closeMenu"
-      >
-        {{ link.label }}
-      </a>
-      <a
-        v-else-if="link.href.startsWith('/#') || link.href.startsWith('#')"
+        v-if="link.href.startsWith('/#') || link.href.startsWith('#')"
         :href="linkHref(link.href)"
         @click="onNavClick($event, link.href)"
       >
@@ -112,11 +100,11 @@ onUnmounted(() => {
       <NuxtLink
         v-else
         :to="link.href"
-        @click="closeMenu"
+        @click="link.href === '/' ? onHomeClick() : closeMenu()"
       >
         {{ link.label }}
       </NuxtLink>
     </template>
-    <a :href="shopHref" class="nav-cta" @click="closeMenu">Shop inventory</a>
+    <a :href="shopHref" class="nav-cta" @click="closeMenu">Shop</a>
   </div>
 </template>

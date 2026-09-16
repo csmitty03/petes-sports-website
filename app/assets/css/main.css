@@ -139,11 +139,11 @@ ul {
     gap: 22px;
 }
 
-.nav-links a.router-link-active {
+.nav-links a.router-link-exact-active {
     color: var(--black);
 }
 
-.nav-links a.router-link-active::after {
+.nav-links a.router-link-exact-active::after {
     width: 100%;
 }
 

@@ -41,6 +41,7 @@ function onHomeHashClick(event: MouseEvent, hash: string) {
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
+            <NuxtLink to="/">Home</NuxtLink>
             <a :href="shopHref">Shop</a>
             <NuxtLink to="/gemini">Gemini Pro Shop</NuxtLink>
             <a :href="homeHash('#managers')" @click="onHomeHashClick($event, '#managers')">Our Team</a>
