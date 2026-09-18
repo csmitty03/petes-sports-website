@@ -68,7 +68,7 @@ export const managers: Person[] = [
 
 export const salesReps: Person[] = [
   { initials: 'AA', name: 'Art Ademi', role: 'Sales Representative', location: "Pete's Main Store — London" },
-  { initials: 'BG', name: 'Brandon Glover', role: 'Sales Representative', location: "Pete's Sports — London" },
+  { initials: 'BG', name: 'Brandon Glover', role: 'Assistant Manager', location: "Pete's Sports — London" },
   { initials: 'DA', name: 'Drin Ademi', role: 'Sales Representative', location: "Pete's Sports — London" },
   { initials: 'JP', name: 'John Pearce', role: 'Sales Representative', location: "Pete's Sports — London" },
   { initials: 'KL', name: 'Kaden Lange', role: 'Sales Representative', location: "Pete's Sports — London" },
