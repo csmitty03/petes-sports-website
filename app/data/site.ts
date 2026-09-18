@@ -133,13 +133,14 @@ export const geminiLocalTeams: LocalTeam[] = [
     name: 'Bluewater Hawks',
     sport: 'Hockey',
     area: 'Strathroy & area',
-    logo: '/assets/bluewater-hawks-logo.jpg',
+    logo: '/assets/bluewater-hawks-logo.png',
     initials: 'BH',
   },
   {
     name: 'Strathroy Royals',
     sport: 'Baseball',
     area: 'Strathroy',
+    logo: '/assets/strathroy-royals-logo.png',
     initials: 'SR',
   },
   {
@@ -203,19 +204,21 @@ export const teamStores: TeamStore[] = [
     sport: 'Hockey',
     initials: 'BH',
     href: 'https://www.petessports.com/bluewater-hawks',
-    logo: '/assets/bluewater-hawks-logo.jpg',
+    logo: '/assets/bluewater-hawks-logo.png',
   },
   {
     name: 'North London Nationals',
     sport: 'Hockey',
     initials: 'NL',
     href: 'https://www.petessports.com/north-london-nationals',
+    logo: '/assets/north-london-nationals-logo.png',
   },
   {
     name: 'Strathroy Royals',
     sport: 'Baseball',
     initials: 'SR',
     href: 'https://www.petessports.com/strathroy-royals-baseball',
+    logo: '/assets/strathroy-royals-logo.png',
   },
 ]
 

@@ -996,15 +996,16 @@ ul {
 
 .team-store-logo,
 .team-store-initials {
-    width: 96px;
-    height: 96px;
     margin-bottom: 16px;
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.team-store-logo {
+    width: 180px;
+    height: 110px;
+    background: transparent;
 }
 
 .team-store-logo img {
@@ -1014,6 +1015,9 @@ ul {
 }
 
 .team-store-initials {
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
     background: var(--black);
     color: var(--white);
     font-family: var(--font-display);
