@@ -70,6 +70,10 @@ ul {
 }
 
 /* Announcement Bar */
+html.announcement-dismissed {
+    --announcement-height: 0px;
+}
+
 .announcement-bar {
     position: fixed;
     top: 0;
@@ -85,7 +89,34 @@ ul {
     text-align: center;
     font-size: 0.85rem;
     font-weight: 500;
-    padding: 0 24px;
+    padding: 0 48px;
+}
+
+.announcement-close {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.announcement-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.announcement-close:hover {
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .announcement-bar a {
