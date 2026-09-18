@@ -75,6 +75,12 @@ export const salesReps: Person[] = [
   { initials: 'QG', name: 'Quinn Gavin-White', role: 'Sales Representative', location: "Pete's Sports — London" },
 ]
 
+export const staffInbox = {
+  title: 'Ask the Staff',
+  email: 'store@petessports.com',
+  description: 'For product details, inventory levels, pricing, and other in-store details — including general inquiries.',
+} as const
+
 export const geminiManagers: Person[] = [
   {
     initials: 'LF',

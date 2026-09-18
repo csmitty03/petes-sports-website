@@ -615,6 +615,32 @@ ul {
     flex-shrink: 0;
 }
 
+.ask-staff {
+    margin: 48px auto 0;
+    max-width: 640px;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+}
+
+.ask-staff h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.ask-staff p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    margin: 0 auto 18px;
+    max-width: 520px;
+}
+
 /* About */
 .about {
     background: var(--white);
