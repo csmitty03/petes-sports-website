@@ -724,11 +724,12 @@ ul {
 
 .about-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
 }
 
 .about-card {
+    grid-column: span 2;
     background: var(--gray-100);
     border-radius: var(--radius);
     padding: 28px 24px;
@@ -753,6 +754,42 @@ ul {
     font-size: 0.8rem;
     color: var(--gray-600);
     margin-top: 8px;
+}
+
+.about-card-duration {
+    grid-column: span 6;
+    padding: 24px 20px 20px;
+}
+
+.about-duration {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 6px;
+}
+
+.about-duration-unit {
+    min-width: 72px;
+    padding: 0 6px;
+}
+
+.about-duration-unit span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.35rem;
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: 0.02em;
+}
+
+.about-duration-unit small {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-600);
 }
 
 /* Services */
@@ -1537,6 +1574,23 @@ ul {
 
     .about-cards {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .about-card,
+    .about-card-duration {
+        grid-column: auto;
+    }
+
+    .about-card-duration {
+        grid-column: 1 / -1;
+    }
+
+    .about-duration-unit {
+        min-width: 56px;
+    }
+
+    .about-duration-unit span {
+        font-size: 1.85rem;
     }
 }
 

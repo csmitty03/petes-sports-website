@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { handleAnchorClick } = useSmoothScroll()
+const { duration } = useOpenDuration()
 </script>
 
 <template>
@@ -42,7 +43,7 @@ const { handleAnchorClick } = useSmoothScroll()
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-value">48</div>
+            <div class="hero-stat-value">{{ duration.years }}</div>
             <div class="hero-stat-label">Years</div>
           </div>
           <div class="hero-stat">

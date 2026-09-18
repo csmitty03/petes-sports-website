@@ -1,3 +1,20 @@
+<script setup lang="ts">
+const { duration } = useOpenDuration()
+
+const units = computed(() => [
+  { key: 'years', value: duration.value.years, label: duration.value.years === 1 ? 'Year' : 'Years' },
+  { key: 'months', value: duration.value.months, label: duration.value.months === 1 ? 'Month' : 'Months' },
+  { key: 'days', value: duration.value.days, label: duration.value.days === 1 ? 'Day' : 'Days' },
+  { key: 'hours', value: duration.value.hours, label: duration.value.hours === 1 ? 'Hour' : 'Hours' },
+  { key: 'minutes', value: duration.value.minutes, label: duration.value.minutes === 1 ? 'Minute' : 'Minutes' },
+  { key: 'seconds', value: duration.value.seconds, label: duration.value.seconds === 1 ? 'Second' : 'Seconds' },
+])
+
+const durationLabel = computed(() => (
+  `${duration.value.years} years, ${duration.value.months} months, ${duration.value.days} days, ${duration.value.hours} hours, ${duration.value.minutes} minutes, and ${duration.value.seconds} seconds in business`
+))
+</script>
+
 <template>
   <section id="about" class="section about">
     <div class="container">
@@ -6,7 +23,7 @@
           <span class="section-label">Our Story</span>
           <h2>A London institution since 1978.</h2>
           <p>
-            Pete's Sports was established in London, Ontario in 1978 and has been providing
+            Pete's Sports was established in London, Ontario on March 12, 1978 and has been providing
             customers with top quality sales and service for nearly 50 years.
           </p>
           <p>
@@ -35,9 +52,19 @@
           </div>
         </div>
         <div class="about-cards">
-          <div class="about-card">
-            <div class="about-card-value">48</div>
-            <div class="about-card-label">Years in Business</div>
+          <div class="about-card about-card-duration" :aria-label="durationLabel">
+            <ClientOnly>
+              <div class="about-duration">
+                <div v-for="unit in units" :key="unit.key" class="about-duration-unit">
+                  <span>{{ unit.value }}</span>
+                  <small>{{ unit.label }}</small>
+                </div>
+              </div>
+              <template #fallback>
+                <div class="about-card-value">{{ duration.years }}</div>
+              </template>
+            </ClientOnly>
+            <div class="about-card-label">In business since March 12, 1978</div>
           </div>
           <div class="about-card">
             <div class="about-card-value">2</div>
