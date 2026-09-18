@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { geminiLocalTeams } from '~/data/site'
+
+const { siteHref } = useSiteHref()
 </script>
 
 <template>
@@ -17,7 +19,7 @@ import { geminiLocalTeams } from '~/data/site'
       <div class="gemini-teams-grid">
         <RevealBlock v-for="team in geminiLocalTeams" :key="team.name" class="gemini-team-card">
           <div v-if="team.logo" class="gemini-team-logo">
-            <img :src="team.logo" :alt="`${team.name} logo`">
+            <img :src="siteHref(team.logo)" :alt="`${team.name} logo`">
           </div>
           <div v-else class="gemini-team-initials">
             {{ team.initials }}

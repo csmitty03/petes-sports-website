@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { teamwearItems, teamStores } from '~/data/site'
 
-const { shopHref } = useSiteHref()
+const { shopHref, siteHref } = useSiteHref()
 </script>
 
 <template>
@@ -46,7 +46,7 @@ const { shopHref } = useSiteHref()
             rel="noopener noreferrer"
           >
             <div v-if="store.logo" class="team-store-logo">
-              <img :src="store.logo" :alt="`${store.name} logo`">
+              <img :src="siteHref(store.logo)" :alt="`${store.name} logo`">
             </div>
             <div v-else class="team-store-initials">
               {{ store.initials }}
