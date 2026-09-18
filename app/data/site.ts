@@ -6,7 +6,14 @@ export interface Person {
   role: string
   location: string
   email?: string
+  phone?: string
   lead?: boolean
+}
+
+export function telHref(phone: string) {
+  const digits = phone.replace(/\D/g, '')
+  if (!digits) return ''
+  return `tel:+${digits.startsWith('1') ? digits : `1${digits}`}`
 }
 
 export interface Service {
@@ -55,6 +62,7 @@ export const managers: Person[] = [
     role: 'General Manager',
     location: "Oversees all Pete's Sports operations",
     email: 'lford@petessports.com',
+    phone: '+1 (519) 520-9287',
     lead: true,
   },
   {
@@ -78,6 +86,7 @@ export const salesReps: Person[] = [
 export const staffInbox = {
   title: 'Ask the Staff',
   email: 'store@petessports.com',
+  phone: '(519) 433-9555',
   description: 'For product details, inventory levels, pricing, and other in-store details — including general inquiries.',
 } as const
 
@@ -88,6 +97,7 @@ export const geminiManagers: Person[] = [
     role: 'General Manager',
     location: "Oversees all Pete's Sports operations",
     email: 'lford@petessports.com',
+    phone: '+1 (519) 520-9287',
     lead: true,
   },
   {

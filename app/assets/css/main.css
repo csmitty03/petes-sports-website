@@ -591,6 +591,13 @@ ul {
     margin-bottom: 20px;
 }
 
+.manager-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
 .manager-email {
     display: inline-flex;
     align-items: center;
@@ -639,6 +646,13 @@ ul {
     color: var(--gray-600);
     margin: 0 auto 18px;
     max-width: 520px;
+}
+
+.ask-staff-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* About */
