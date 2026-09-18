@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { teamwearItems } from '~/data/site'
+import { teamwearItems, teamStores } from '~/data/site'
 
-const { handleAnchorClick } = useSmoothScroll()
 const { shopHref } = useSiteHref()
 </script>
 
@@ -30,26 +29,35 @@ const { shopHref } = useSiteHref()
         </div>
       </RevealBlock>
 
-      <RevealBlock class="teamwear-brands">
-        <div class="teamwear-brand-card">
-          <div class="teamwear-brand-logo">
-            <img src="/assets/bluewater-hawks-logo.jpg" alt="BlueWater Hawks Girls Hockey">
-          </div>
-          <div class="teamwear-brand-copy">
-            <span class="teamwear-brand-label">Featured Teamwear Brand</span>
-            <p>Shop official BlueWater Hawks jerseys, apparel, and team gear through our live online store.</p>
-          </div>
-          <div class="teamwear-brand-action">
-            <a
-              href="https://www.petessports.com/bluewater-hawks"
-              class="btn btn-accent teamwear-brand-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Shop BlueWater Hawks
+      <RevealBlock class="team-stores">
+        <div class="section-header">
+          <span class="section-label">Team Stores</span>
+          <h2 class="section-title">You made the cut</h2>
+          <p class="section-desc">Get your team's apparel here. Each store opens in a new tab with the same checkout you already use.</p>
+        </div>
+
+        <div class="team-stores-grid">
+          <a
+            v-for="store in teamStores"
+            :key="store.href"
+            :href="store.href"
+            class="team-store-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div v-if="store.logo" class="team-store-logo">
+              <img :src="store.logo" :alt="`${store.name} logo`">
+            </div>
+            <div v-else class="team-store-initials">
+              {{ store.initials }}
+            </div>
+            <h3>{{ store.name }}</h3>
+            <p class="team-store-sport">{{ store.sport }}</p>
+            <span class="btn btn-accent team-store-btn">
+              Shop now
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5M21 3l-9 9m0 0h5.25M12 12V3" /></svg>
-            </a>
-          </div>
+            </span>
+          </a>
         </div>
       </RevealBlock>
     </div>

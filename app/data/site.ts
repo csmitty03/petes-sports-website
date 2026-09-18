@@ -44,6 +44,14 @@ export interface LocalTeam {
   initials: string
 }
 
+export interface TeamStore {
+  name: string
+  sport: string
+  initials: string
+  href: string
+  logo?: string
+}
+
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Gemini', href: '/gemini' },
@@ -177,7 +185,8 @@ export const services: Service[] = [
   {
     title: 'Team Stores',
     description: 'We set up and manage full team stores for associations and clubs. "You made the cut — get your team apparel here."',
-    link: '#contact',
+    link: '#teamwear',
+    linkLabel: 'Shop team stores',
   },
 ]
 
@@ -187,6 +196,28 @@ export const teamwearItems = [
   'Complete team stores for associations',
   'Fast turnaround on team orders',
 ] as const
+
+export const teamStores: TeamStore[] = [
+  {
+    name: 'Bluewater Hawks',
+    sport: 'Hockey',
+    initials: 'BH',
+    href: 'https://www.petessports.com/bluewater-hawks',
+    logo: '/assets/bluewater-hawks-logo.jpg',
+  },
+  {
+    name: 'North London Nationals',
+    sport: 'Hockey',
+    initials: 'NL',
+    href: 'https://www.petessports.com/north-london-nationals',
+  },
+  {
+    name: 'Strathroy Royals',
+    sport: 'Baseball',
+    initials: 'SR',
+    href: 'https://www.petessports.com/strathroy-royals-baseball',
+  },
+]
 
 export const localTeams = [
   'Bluewater Hawks',
