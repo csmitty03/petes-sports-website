@@ -32,6 +32,8 @@ export interface Location {
   phone: string
   email: string
   hours: string[]
+  mapsHref?: string
+  mapsLabel?: string
   pageHref?: string
   pageLabel?: string
 }
@@ -176,8 +178,10 @@ export const services: Service[] = [
   },
   {
     title: 'Skate Sharpening & Repairs',
-    description: 'High quality skate sharpening plus rivet and eyelet repairs to keep your skates performing at their best.',
-    tag: 'Sharpening • Rivets • Eyelets',
+    description: 'Walk-in skate sharpening plus rivet and eyelet repairs. $10 per pair. We offer every hollow except flat bottom — tell us how you like your edges.',
+    tag: '$10 • All hollows except flat bottom',
+    link: '#sharpening',
+    linkLabel: 'Sharpening details',
   },
   {
     title: 'Corporate & Workwear',
@@ -246,6 +250,8 @@ export const locations: Location[] = [
       'Saturday: 10:00 AM – 4:00 PM',
       'Sunday: Closed',
     ],
+    mapsHref: 'https://maps.google.com/?q=900+Oxford+Street+East+Unit+15+London+ON+N5Y+5A1',
+    mapsLabel: 'Get directions',
   },
   {
     title: "Pete's Sports — Strathroy",
@@ -259,10 +265,39 @@ export const locations: Location[] = [
       'Monday – Friday: 3:00 PM – 9:00 PM',
       'Saturday – Sunday: 8:00 AM – 6:00 PM',
     ],
+    mapsHref: 'https://maps.google.com/?q=667+Adair+Blvd+Strathroy+ON+N7G+3H8',
+    mapsLabel: 'Get directions',
     pageHref: '/gemini',
     pageLabel: 'Explore the Gemini Pro Shop',
   },
 ]
+
+export const skateSharpening = {
+  title: 'Skate Sharpening',
+  price: '$10',
+  priceLabel: 'per pair',
+  intro: 'Walk in during store hours. Tell us how you skate and we will set the hollow.',
+  points: [
+    '$10 skate sharpening',
+    'Rivet and eyelet repairs',
+    'Every hollow except flat bottom',
+  ],
+} as const
+
+export const brandGroups = [
+  {
+    label: 'Hockey',
+    brands: ['Bauer', 'CCM', 'Warrior', 'True'],
+  },
+  {
+    label: 'Baseball',
+    brands: ['Rawlings', 'Easton', 'Mizuno', 'Worth'],
+  },
+  {
+    label: 'Apparel',
+    brands: ['Under Armour', 'Bauer', 'CCM'],
+  },
+] as const
 
 export const inquiries: Record<InquiryType, { email: string; name: string; subject: string; label: string }> = {
   sales: {

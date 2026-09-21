@@ -13,6 +13,7 @@ useSeoMeta({
     <TeamSection />
     <AboutSection />
     <ServicesSection />
+    <BrandsSection />
     <TeamwearSection />
     <TeamsMarquee />
     <LocationsSection />

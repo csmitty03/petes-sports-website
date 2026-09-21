@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { services } from '~/data/site'
+import { services, skateSharpening } from '~/data/site'
 
 const serviceIcons = [
   '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>',
@@ -28,6 +28,21 @@ const serviceIcons = [
           :icon="serviceIcons[index]!"
         />
       </div>
+
+      <RevealBlock id="sharpening" class="sharpening-card">
+        <div class="sharpening-price">
+          <span>{{ skateSharpening.price }}</span>
+          <small>{{ skateSharpening.priceLabel }}</small>
+        </div>
+        <div class="sharpening-copy">
+          <span class="section-label">In Store</span>
+          <h3>{{ skateSharpening.title }}</h3>
+          <p>{{ skateSharpening.intro }}</p>
+          <ul>
+            <li v-for="point in skateSharpening.points" :key="point">{{ point }}</li>
+          </ul>
+        </div>
+      </RevealBlock>
     </div>
   </section>
 </template>
