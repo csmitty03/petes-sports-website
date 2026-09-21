@@ -282,6 +282,13 @@ export const skateSharpening = {
     'Rivet and eyelet repairs',
     'Ask us which hollow is best for you',
   ],
+  cardsTitle: 'Bundle and Save',
+  cardsIntro: 'Pick up a skate sharpening card in store and save on every visit.',
+  cards: [
+    { label: '5 pack', price: '$45', each: '$9 each' },
+    { label: '10 pack', price: '$80', each: '$8 each' },
+    { label: '20 pack', price: '$140', each: '$7 each' },
+  ],
 } as const
 
 export const brandGroups = [
