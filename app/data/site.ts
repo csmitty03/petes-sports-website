@@ -54,6 +54,11 @@ export interface TeamStore {
   logo?: string
 }
 
+export interface Brand {
+  name: string
+  logo?: string
+}
+
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Gemini', href: '/gemini' },
@@ -178,8 +183,8 @@ export const services: Service[] = [
   },
   {
     title: 'Skate Sharpening & Repairs',
-    description: 'Walk-in skate sharpening plus rivet and eyelet repairs. $10 per pair. Ask us which hollow is best for you.',
-    tag: '$10 • Ask us which hollow is best',
+    description: 'Walk-in skate sharpening plus rivet and eyelet repairs. $10 per pair.',
+    tag: '$10 per pair',
     link: '#sharpening',
     linkLabel: 'Sharpening details',
   },
@@ -280,7 +285,6 @@ export const skateSharpening = {
   points: [
     '$10 skate sharpening',
     'Rivet and eyelet repairs',
-    'Ask us which hollow is best for you',
   ],
   cardsTitle: 'Bundle and Save',
   cardsIntro: 'Pick up a skate sharpening card in store and save on every visit.',
@@ -291,20 +295,34 @@ export const skateSharpening = {
   ],
 } as const
 
-export const brandGroups = [
+export const brandGroups: { label: string; brands: Brand[] }[] = [
   {
     label: 'Hockey',
-    brands: ['Bauer', 'CCM', 'Warrior', 'True'],
+    brands: [
+      { name: 'Bauer', logo: '/assets/brands/bauer.svg' },
+      { name: 'CCM', logo: '/assets/brands/ccm.svg' },
+      { name: 'Warrior', logo: '/assets/brands/warrior.png' },
+      { name: 'True' },
+    ],
   },
   {
     label: 'Baseball',
-    brands: ['Rawlings', 'Easton', 'Mizuno', 'Worth'],
+    brands: [
+      { name: 'Rawlings', logo: '/assets/brands/rawlings.png' },
+      { name: 'Easton', logo: '/assets/brands/easton.svg' },
+      { name: 'Mizuno', logo: '/assets/brands/mizuno.jpg' },
+      { name: 'Worth' },
+    ],
   },
   {
     label: 'Apparel',
-    brands: ['Under Armour', 'Bauer', 'CCM'],
+    brands: [
+      { name: 'Under Armour', logo: '/assets/brands/under-armour.svg' },
+      { name: 'Bauer', logo: '/assets/brands/bauer.svg' },
+      { name: 'CCM', logo: '/assets/brands/ccm.svg' },
+    ],
   },
-] as const
+]
 
 export const inquiries: Record<InquiryType, { email: string; name: string; subject: string; label: string }> = {
   sales: {

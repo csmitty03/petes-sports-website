@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { brandGroups } from '~/data/site'
+
+const { siteHref } = useSiteHref()
 </script>
 
 <template>
@@ -15,9 +17,12 @@ import { brandGroups } from '~/data/site'
         <RevealBlock v-for="group in brandGroups" :key="group.label" class="brands-group">
           <h3>{{ group.label }}</h3>
           <div class="brands-list">
-            <span v-for="brand in group.brands" :key="`${group.label}-${brand}`" class="brand-chip">
-              {{ brand }}
-            </span>
+            <div v-for="brand in group.brands" :key="`${group.label}-${brand.name}`" class="brand-item">
+              <div v-if="brand.logo" class="brand-logo">
+                <img :src="siteHref(brand.logo)" :alt="`${brand.name} logo`">
+              </div>
+              <span>{{ brand.name }}</span>
+            </div>
           </div>
         </RevealBlock>
       </div>
