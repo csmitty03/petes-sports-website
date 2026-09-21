@@ -44,6 +44,7 @@ export interface LocalTeam {
   area?: string
   logo?: string
   initials: string
+  storeHref?: string
 }
 
 export interface TeamStore {
@@ -142,6 +143,7 @@ export const geminiLocalTeams: LocalTeam[] = [
     area: 'Strathroy & area',
     logo: '/assets/bluewater-hawks-logo.png',
     initials: 'BH',
+    storeHref: 'https://www.petessports.com/bluewater-hawks',
   },
   {
     name: 'Strathroy Royals',
@@ -149,12 +151,14 @@ export const geminiLocalTeams: LocalTeam[] = [
     area: 'Strathroy',
     logo: '/assets/strathroy-royals-logo.png',
     initials: 'SR',
+    storeHref: 'https://www.petessports.com/strathroy-royals-baseball',
   },
   {
     name: 'Strathroy Jr. Rockets',
     sport: 'Hockey',
     area: 'Strathroy',
     initials: 'JR',
+    storeHref: 'https://www.petessports.com/strathroy-jr-rockets',
   },
   {
     name: 'North Middlesex Jr. Stars',
