@@ -30,7 +30,7 @@ const { handleAnchorClick } = useSmoothScroll()
           </p>
           <div class="hero-actions">
             <a href="#visit" class="btn btn-primary" @click="handleAnchorClick($event, '#visit')">Location &amp; Hours</a>
-            <a href="#managers" class="btn btn-outline" @click="handleAnchorClick($event, '#managers')">Meet the Team</a>
+            <a href="#sharpening" class="btn btn-outline" @click="handleAnchorClick($event, '#sharpening')">Skate Sharpening</a>
           </div>
           <div class="hero-features">
             <div class="hero-feature">
@@ -70,6 +70,7 @@ const { handleAnchorClick } = useSmoothScroll()
     </header>
 
     <GeminiVisitSection />
+    <SharpeningSection />
 
     <TeamSection
       :managers="geminiManagers"

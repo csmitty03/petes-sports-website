@@ -880,8 +880,12 @@ html.announcement-dismissed {
     line-height: 1.65;
 }
 
+.sharpening-section {
+    background: var(--gray-100);
+}
+
 .sharpening {
-    margin-top: 28px;
+    margin-top: 0;
 }
 
 .sharpening-card {
