@@ -178,8 +178,8 @@ export const services: Service[] = [
   },
   {
     title: 'Skate Sharpening & Repairs',
-    description: 'Walk-in skate sharpening plus rivet and eyelet repairs. $10 per pair. We offer every hollow except flat bottom — tell us how you like your edges.',
-    tag: '$10 • All hollows except flat bottom',
+    description: 'Walk-in skate sharpening plus rivet and eyelet repairs. $10 per pair. Ask us which hollow is best for you.',
+    tag: '$10 • Ask us which hollow is best',
     link: '#sharpening',
     linkLabel: 'Sharpening details',
   },
@@ -276,11 +276,11 @@ export const skateSharpening = {
   title: 'Skate Sharpening',
   price: '$10',
   priceLabel: 'per pair',
-  intro: 'Walk in during store hours. Tell us how you skate and we will set the hollow.',
+  intro: 'Walk in during store hours. Ask us which hollow is best for you.',
   points: [
     '$10 skate sharpening',
     'Rivet and eyelet repairs',
-    'Every hollow except flat bottom',
+    'Ask us which hollow is best for you',
   ],
 } as const
 
