@@ -14,9 +14,6 @@ import { locations } from '~/data/site'
       <RevealBlock class="locations-grid">
         <div v-for="location in locations" :key="location.title" class="location-card featured">
           <div class="location-header">
-            <div class="location-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36a11.239 11.239 0 0 1-.5-2.186 10.374 10.374 0 0 1 .5-4.244 11.217 11.217 0 0 1 2.5-3.864M13.5 21h5.238a11.222 11.222 0 0 0-2.5-3.864M8.25 9.75h7.5M8.25 12.75h7.5m-7.5 3h3.375c.621 0 1.125-.504 1.125-1.125V9.75M8.25 6.75h7.5" /></svg>
-            </div>
             <div>
               <h3>{{ location.title }}</h3>
               <p v-if="location.subtitle" class="location-subtitle">{{ location.subtitle }}</p>
