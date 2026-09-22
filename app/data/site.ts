@@ -1,4 +1,4 @@
-export type InquiryType = 'store' | 'sales' | 'manager'
+export type InquiryType = 'store' | 'sales' | 'storeManager' | 'manager'
 
 export interface Person {
   initials: string
@@ -333,8 +333,8 @@ export const brandGroups: { label: string; brands: Brand[] }[] = [
 export const inquiries: Record<InquiryType, { email: string; name: string; subject: string; label: string }> = {
   store: {
     label: 'Store Inquiry',
-    email: 'csmith@petessports.com',
-    name: 'Carsen Smith — Store Manager',
+    email: 'store@petessports.com',
+    name: "Pete's Sports Store",
     subject: 'Store Inquiry',
   },
   sales: {
@@ -342,6 +342,12 @@ export const inquiries: Record<InquiryType, { email: string; name: string; subje
     email: 'sales@petessports.com',
     name: 'Sales Team',
     subject: 'Sales Inquiry',
+  },
+  storeManager: {
+    label: 'Store Manager',
+    email: 'csmith@petessports.com',
+    name: 'Carsen Smith — Store Manager',
+    subject: 'Store Manager Inquiry',
   },
   manager: {
     label: 'General Manager',
