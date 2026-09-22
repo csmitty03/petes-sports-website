@@ -1,4 +1,4 @@
-export type InquiryType = 'sales' | 'store' | 'manager'
+export type InquiryType = 'store' | 'sales' | 'manager'
 
 export interface Person {
   initials: string
@@ -165,6 +165,8 @@ export const geminiLocalTeams: LocalTeam[] = [
     sport: 'Hockey',
     area: 'Park Hill teams',
     initials: 'NS',
+    logo: '/assets/north-middlesex-jr-stars-logo.png',
+    storeHref: 'https://www.petessports.com/north-middlesex-jr-stars',
   },
 ]
 
@@ -329,17 +331,17 @@ export const brandGroups: { label: string; brands: Brand[] }[] = [
 ]
 
 export const inquiries: Record<InquiryType, { email: string; name: string; subject: string; label: string }> = {
-  sales: {
-    label: 'Sales Inquiry',
-    email: 'sales@petessports.com',
-    name: 'Sales Team',
-    subject: 'Sales Inquiry',
-  },
   store: {
     label: 'Store Inquiry',
     email: 'csmith@petessports.com',
     name: 'Carsen Smith — Store Manager',
     subject: 'Store Inquiry',
+  },
+  sales: {
+    label: 'Sales Inquiry',
+    email: 'sales@petessports.com',
+    name: 'Sales Team',
+    subject: 'Sales Inquiry',
   },
   manager: {
     label: 'General Manager',

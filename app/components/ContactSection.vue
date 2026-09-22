@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inquiries, type InquiryType } from '~/data/site'
 
-const activeInquiry = ref<InquiryType>('sales')
+const activeInquiry = ref<InquiryType>('store')
 
 const form = reactive({
   name: '',
