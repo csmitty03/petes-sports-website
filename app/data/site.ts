@@ -235,6 +235,13 @@ export const teamStores: TeamStore[] = [
     href: 'https://www.petessports.com/strathroy-royals-baseball',
     logo: '/assets/strathroy-royals-logo.png',
   },
+  {
+    name: 'North Middlesex Jr. Stars',
+    sport: 'Hockey',
+    initials: 'NS',
+    href: 'https://www.petessports.com/north-middlesex-jr-stars',
+    logo: '/assets/north-middlesex-jr-stars-logo.png',
+  },
 ]
 
 export const localTeams = [
@@ -243,6 +250,7 @@ export const localTeams = [
   'Jr Mustangs',
   'London Dart League',
   'North London Nationals',
+  'North Middlesex Jr. Stars',
   'Oakridge Aeros',
   'Strathroy Jr. Rockets',
   'NL Diamonds',
