@@ -176,6 +176,14 @@ export const geminiLocalTeams: LocalTeam[] = [
     logo: '/assets/southwest-bullets-logo.png',
     storeHref: 'https://www.petessports.com/southwest-bullets',
   },
+  {
+    name: 'London Raiders',
+    sport: 'Hockey',
+    area: 'London',
+    initials: 'LR',
+    logo: '/assets/london-raiders-logo.png',
+    storeHref: 'https://www.petessports.com/red-circle-hockey-club-raiders',
+  },
 ]
 
 export const services: Service[] = [
@@ -257,6 +265,13 @@ export const teamStores: TeamStore[] = [
     href: 'https://www.petessports.com/southwest-bullets',
     logo: '/assets/southwest-bullets-logo.png',
   },
+  {
+    name: 'London Raiders',
+    sport: 'Hockey',
+    initials: 'LR',
+    href: 'https://www.petessports.com/red-circle-hockey-club-raiders',
+    logo: '/assets/london-raiders-logo.png',
+  },
 ]
 
 export const localTeams = [
@@ -264,6 +279,7 @@ export const localTeams = [
   'Ilderton Jets',
   'Jr Mustangs',
   'London Dart League',
+  'London Raiders',
   'North London Nationals',
   'North Middlesex Jr. Stars',
   'Oakridge Aeros',
