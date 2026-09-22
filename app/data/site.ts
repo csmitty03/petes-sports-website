@@ -168,6 +168,14 @@ export const geminiLocalTeams: LocalTeam[] = [
     logo: '/assets/north-middlesex-jr-stars-logo.png',
     storeHref: 'https://www.petessports.com/north-middlesex-jr-stars',
   },
+  {
+    name: 'Southwest Bullets',
+    sport: 'Hockey',
+    area: 'Southwest',
+    initials: 'SB',
+    logo: '/assets/southwest-bullets-logo.png',
+    storeHref: 'https://www.petessports.com/southwest-bullets',
+  },
 ]
 
 export const services: Service[] = [
@@ -242,6 +250,13 @@ export const teamStores: TeamStore[] = [
     href: 'https://www.petessports.com/north-middlesex-jr-stars',
     logo: '/assets/north-middlesex-jr-stars-logo.png',
   },
+  {
+    name: 'Southwest Bullets',
+    sport: 'Hockey',
+    initials: 'SB',
+    href: 'https://www.petessports.com/southwest-bullets',
+    logo: '/assets/southwest-bullets-logo.png',
+  },
 ]
 
 export const localTeams = [
@@ -254,6 +269,7 @@ export const localTeams = [
   'Oakridge Aeros',
   'Strathroy Jr. Rockets',
   'NL Diamonds',
+  'Southwest Bullets',
   'Strathroy Royals',
   '+ many more local teams',
 ] as const
