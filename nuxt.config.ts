@@ -17,10 +17,10 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    supabaseServiceRoleKey: (process.env.NUXT_SUPABASE_SERVICE_ROLE_KEY || '').trim().replace(/^["']|["']$/g, ''),
+    supabaseServiceRoleKey: '',
     public: {
-      supabaseUrl: (process.env.NUXT_PUBLIC_SUPABASE_URL || '').trim().replace(/^["']|["']$/g, '').replace(/\/$/, ''),
-      supabaseAnonKey: (process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY || '').trim().replace(/^["']|["']$/g, ''),
+      supabaseUrl: '',
+      supabaseAnonKey: '',
     },
   },
   nitro: {
