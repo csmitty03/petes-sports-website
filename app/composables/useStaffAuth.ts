@@ -47,6 +47,12 @@ export function useStaffAuth() {
     }
     user.value = data.user ? { id: data.user.id, email: data.user.email } : null
     if (data.user) await loadProfile(data.user.id)
+    if (!profile.value) {
+      await supabase.auth.signOut()
+      user.value = null
+      error.value = 'This login exists, but it has no staff profile. Add this person again under Users, or insert a profiles row in Supabase.'
+      throw new Error(error.value)
+    }
   }
 
   async function logout() {

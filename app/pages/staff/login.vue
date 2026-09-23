@@ -34,7 +34,7 @@ async function submit() {
     <form class="staff-login-card staff-form" @submit.prevent="submit">
       <img :src="siteHref('/assets/petes-sports-logo.png')" alt="Pete's Sports">
       <h1>Staff login</h1>
-      <p>Job tracker for London, Strathroy, and New Era Grafix.</p>
+      <p>Use the Netlify staff link your manager sent, then sign in with your own email.</p>
       <div v-if="!staffConfigured()" class="staff-setup">
         Staff login is not connected yet. Add the Supabase keys on Netlify, then create accounts.
       </div>

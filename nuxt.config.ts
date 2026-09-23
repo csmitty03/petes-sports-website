@@ -28,14 +28,15 @@ export default defineNuxtConfig({
       // Shop is a static public/shop/index.html (vanilla JS), not a Nuxt page.
       // Crawler still sees /shop links from the homepage — ignore those 404s.
       crawlLinks: true,
-      routes: ['/', '/gemini'],
+      routes: ['/', '/gemini', '/staff/login'],
       failOnError: false,
-      ignore: ['/shop', '/shop/', '/shop/**', '/staff', '/staff/**'],
+      ignore: ['/shop', '/shop/', '/shop/**'],
     },
   },
   // Ensure static shop is never treated as a SPA fallback-only path
   routeRules: {
     '/shop/**': { prerender: false },
-    '/staff/**': { ssr: false, prerender: false },
+    '/staff/login': { prerender: true, ssr: false },
+    '/staff/**': { ssr: false },
   },
 })
