@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import '~/assets/css/staff.css'
-import { roleLabels } from '~/data/staff'
+import { canManageUsers, roleLabels } from '~/data/staff'
 
 const { profile, isLoggedIn, logout } = useStaffAuth()
 const { siteHref } = useSiteHref()
+const isAdmin = computed(() => Boolean(profile.value && canManageUsers(profile.value.role)))
 </script>
 
 <template>
@@ -21,7 +22,7 @@ const { siteHref } = useSiteHref()
     <nav v-if="isLoggedIn" class="staff-nav">
       <NuxtLink to="/staff/orders">Orders</NuxtLink>
       <NuxtLink v-if="profile && (profile.role === 'admin' || profile.role === 'london' || profile.role === 'strathroy')" to="/staff/orders/new">New job</NuxtLink>
-      <NuxtLink v-if="profile?.role === 'admin'" to="/staff/users">Users</NuxtLink>
+      <NuxtLink v-if="isAdmin" to="/staff/users">Users</NuxtLink>
     </nav>
     <main class="staff-main">
       <slot />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { canCreateJobs, shortLocationLabels, statusLabels, type StaffOrder, type StaffStatus } from '~/data/staff'
+import { canCreateJobs, canManageUsers, shortLocationLabels, statusLabels, type StaffOrder, type StaffStatus } from '~/data/staff'
 
 definePageMeta({
   layout: 'staff',
@@ -68,6 +68,7 @@ function pillClass(status: StaffStatus) {
         <option v-for="item in filters" :key="item.id" :value="item.id">{{ item.label }}</option>
       </select>
       <NuxtLink v-if="profile && canCreateJobs(profile.role)" to="/staff/orders/new" class="staff-action accent" style="min-width: 140px; text-align: center;">New job</NuxtLink>
+      <NuxtLink v-if="profile && canManageUsers(profile.role)" to="/staff/users" class="staff-action light" style="min-width: 140px; text-align: center;">Users</NuxtLink>
     </div>
     <p v-if="loadError" class="staff-error">{{ loadError }}</p>
     <p v-else-if="!visible.length">No jobs match this view.</p>

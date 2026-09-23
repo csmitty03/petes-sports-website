@@ -267,8 +267,8 @@ export function canRecordPickup(role: StaffRole) {
   return role === 'admin' || role === 'london' || role === 'strathroy'
 }
 
-export function canManageUsers(role: StaffRole) {
-  return role === 'admin'
+export function canManageUsers(role: StaffRole | string | null | undefined) {
+  return String(role || '').trim().toLowerCase() === 'admin'
 }
 
 export function startingLocation(blanks: string | null, role: StaffRole): { location: StaffLocation; status: StaffStatus } {
