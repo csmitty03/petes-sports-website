@@ -40,7 +40,9 @@ export function useStaffAuth() {
     error.value = ''
     const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password })
     if (authError) {
-      error.value = authError.message
+      error.value = authError.message === 'Failed to fetch'
+        ? 'Cannot reach the staff database. Check the Supabase project URL on Netlify, and that the project is not paused.'
+        : authError.message
       throw authError
     }
     user.value = data.user ? { id: data.user.id, email: data.user.email } : null

@@ -9,8 +9,8 @@ export function staffConfigured() {
 
 export function useSupabase() {
   const config = useRuntimeConfig()
-  const url = String(config.public.supabaseUrl || '')
-  const key = String(config.public.supabaseAnonKey || '')
+  const url = String(config.public.supabaseUrl || '').trim().replace(/\/$/, '')
+  const key = String(config.public.supabaseAnonKey || '').trim()
 
   if (!url || !key) return null
 
