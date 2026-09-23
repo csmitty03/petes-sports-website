@@ -16,6 +16,13 @@ export default defineNuxtConfig({
       ],
     },
   },
+  runtimeConfig: {
+    supabaseServiceRoleKey: '',
+    public: {
+      supabaseUrl: '',
+      supabaseAnonKey: '',
+    },
+  },
   nitro: {
     prerender: {
       // Shop is a static public/shop/index.html (vanilla JS), not a Nuxt page.
@@ -23,11 +30,12 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/', '/gemini'],
       failOnError: false,
-      ignore: ['/shop', '/shop/', '/shop/**'],
+      ignore: ['/shop', '/shop/', '/shop/**', '/staff', '/staff/**'],
     },
   },
   // Ensure static shop is never treated as a SPA fallback-only path
   routeRules: {
     '/shop/**': { prerender: false },
+    '/staff/**': { ssr: false, prerender: false },
   },
 })

@@ -12,6 +12,7 @@
     "enrich:images": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/enrich-gear-images.ps1"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
     "nuxt": "^4.4.8",
     "vue": "^3.5.39",
     "vue-router": "^5.1.0"

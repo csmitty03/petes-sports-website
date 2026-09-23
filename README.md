@@ -70,11 +70,42 @@ npm install
 npm run dev
 ```
 
+## Staff job tracker (`/staff`)
+
+Internal chain-of-custody tracker for decorated orders (London ↔ New Era Grafix ↔ Strathroy ↔ customer pickup). It is **not** linked from the public menu.
+
+This needs a database and individual logins, so it runs on **Netlify** (SSR/API). GitHub Pages can still serve the public site.
+
+### One-time setup
+
+1. Create a free [Supabase](https://supabase.com) project.
+2. In the SQL editor, run `supabase/schema.sql`.
+3. Authentication → Users → add your admin login, then in SQL:
+
+```sql
+insert into public.profiles (id, full_name, role)
+values ('PASTE-USER-UUID', 'Carsen Smith', 'admin');
+```
+
+4. Connect the GitHub repo to Netlify. Build command `npm run build`, publish `dist`.
+5. Add Netlify env vars:
+
+| Variable | Value |
+|----------|--------|
+| `NUXT_PUBLIC_SUPABASE_URL` | Project URL |
+| `NUXT_PUBLIC_SUPABASE_ANON_KEY` | anon public key |
+| `NUXT_SUPABASE_SERVICE_ROLE_KEY` | service role key (server only) |
+| `NUXT_APP_BASE_URL` | `/` |
+
+6. After deploy, open `/staff`, sign in, then **Users** to add London, Strathroy, and New Era accounts.
+
+Do not share one password. New Era only needs Receive, In production, Ready, and sign-out.
+
 ## Build
 
 ```bash
 npm run build
-npm run generate   # static site (GitHub Pages)
+npm run generate   # static public site (GitHub Pages)
 ```
 
 ## Project structure
