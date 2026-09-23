@@ -1,13 +1,18 @@
 .staff-shell {
   min-height: 100vh;
+  box-sizing: border-box;
   background: var(--gray-100);
   color: var(--charcoal);
   font-size: 1.1rem;
+  padding-top: max(0.5cm, env(safe-area-inset-top, 0px));
+  padding-right: max(0.5cm, env(safe-area-inset-right, 0px));
+  padding-bottom: max(0.5cm, env(safe-area-inset-bottom, 0px));
+  padding-left: max(0.5cm, env(safe-area-inset-left, 0px));
 }
 
 .staff-top {
   position: sticky;
-  top: 0;
+  top: max(0.5cm, env(safe-area-inset-top, 0px));
   z-index: 20;
   background: var(--black);
   color: var(--white);
@@ -15,7 +20,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 24px;
+  padding: 14px 18px;
+  border-radius: 12px 12px 0 0;
 }
 
 .staff-brand {
@@ -55,7 +61,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 14px 24px;
+  padding: 14px 18px;
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
 }
@@ -76,7 +82,7 @@
 .staff-main {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 28px 28px 56px;
+  padding: 20px 8px 40px;
 }
 
 .staff-back {
@@ -93,9 +99,10 @@
 
 .staff-login {
   min-height: 100vh;
+  box-sizing: border-box;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: max(0.5cm, env(safe-area-inset-top, 0px)) max(0.5cm, env(safe-area-inset-right, 0px)) max(0.5cm, env(safe-area-inset-bottom, 0px)) max(0.5cm, env(safe-area-inset-left, 0px));
   background: var(--black);
 }
 
@@ -284,12 +291,6 @@
   }
 
   .staff-main {
-    padding: 24px 22px 48px;
-  }
-
-  .staff-top,
-  .staff-nav {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 16px 4px 40px;
   }
 }
