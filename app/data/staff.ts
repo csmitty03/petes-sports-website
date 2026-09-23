@@ -129,6 +129,16 @@ export const statusLabels: Record<StaffStatus, string> = {
   on_hold: 'On hold / problem',
 }
 
+export const statusOptions = (Object.keys(statusLabels) as StaffStatus[]).map(value => ({
+  value,
+  label: statusLabels[value],
+}))
+
+export const locationOptions = (Object.keys(locationLabels) as StaffLocation[]).map(value => ({
+  value,
+  label: locationLabels[value],
+}))
+
 export const roleLabels: Record<StaffRole, string> = {
   admin: 'Admin',
   london: 'London staff',

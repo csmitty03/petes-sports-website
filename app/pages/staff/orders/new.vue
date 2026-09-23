@@ -81,6 +81,7 @@ async function submit() {
 
 <template>
   <form class="staff-form" @submit.prevent="submit">
+    <StaffBack />
     <h2>New job</h2>
     <p v-if="error" class="staff-error">{{ error }}</p>
     <div class="staff-grid-2">

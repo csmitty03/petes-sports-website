@@ -63,6 +63,7 @@ async function createUser() {
 
 <template>
   <div>
+    <StaffBack />
     <h2>Staff accounts</h2>
     <p>Give each person their own login. Do not share passwords.</p>
     <p v-if="error" class="staff-error">{{ error }}</p>

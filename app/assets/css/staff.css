@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: var(--gray-100);
   color: var(--charcoal);
+  font-size: 1.1rem;
 }
 
 .staff-top {
@@ -14,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 12px 16px;
+  padding: 14px 24px;
 }
 
 .staff-brand {
@@ -38,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .staff-user button {
@@ -54,7 +55,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 14px 24px;
   background: var(--white);
   border-bottom: 1px solid var(--gray-200);
 }
@@ -63,7 +64,7 @@
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   background: var(--gray-100);
 }
 
@@ -73,9 +74,21 @@
 }
 
 .staff-main {
-  max-width: 980px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 20px 16px 48px;
+  padding: 28px 28px 56px;
+}
+
+.staff-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  font-weight: 700;
 }
 
 .staff-login {
@@ -117,7 +130,7 @@
 .staff-form label,
 .staff-field label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 6px;
 }
@@ -131,8 +144,9 @@
   width: 100%;
   border: 1px solid var(--gray-200);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   font: inherit;
+  font-size: 1.05rem;
   margin-bottom: 14px;
   background: var(--white);
 }
@@ -169,9 +183,9 @@
   background: var(--black);
   color: var(--white);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 12px 16px;
+  padding: 14px 18px;
 }
 
 .staff-action.accent {
@@ -188,13 +202,13 @@
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
-  padding: 16px 18px;
+  padding: 20px 22px;
   margin-bottom: 12px;
 }
 
 .staff-card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 4px;
+  font-size: 1.25rem;
+  margin-bottom: 6px;
 }
 
 .staff-meta {
@@ -205,7 +219,7 @@
 }
 
 .staff-pill {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   background: var(--gray-100);
   border-radius: 999px;
@@ -235,8 +249,9 @@
   min-width: 160px;
   border: 1px solid var(--gray-200);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   font: inherit;
+  font-size: 1.05rem;
 }
 
 .staff-history {
@@ -266,5 +281,15 @@
 @media (max-width: 700px) {
   .staff-grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .staff-main {
+    padding: 24px 22px 48px;
+  }
+
+  .staff-top,
+  .staff-nav {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
